@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Scripts/CSS/assets/css/ace-ie.min.css" />
+    <link href="~/Scripts/CSS/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
+    <script src="~/Scripts/CSS/assets/js/ace-extra.min.js"></script>
+    <script src="~/Scripts/CSS/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/CSS/assets/layer/layer.js" type="text/javascript"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>超市管理系统</title>
+</head>
+<body class="login-layout Reg_log_style">
+    <div class="logintop">
+        <span>欢迎后台管理界面平台</span>
+        <ul>
+            <li><a href="#">返回首页</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">关于</a></li>
+        </ul>
+    </div>
+    <div class="loginbody">
+        <div class="login-container">
+            <div class="center">
+                @*<img src="images/logo1.png" />*@
+                <h2>超市管理系统</h2>
+            </div>
+
+            <div class="space-6"></div>
+
+            <div class="position-relative">
+                <div id="login-box" class="login-box widget-box no-border visible">
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <h4 class="header blue lighter bigger">
+                                <i class="icon-coffee green"></i>
+                                管理员登陆
+                            </h4>
+
+                            <div class="login_icon"><img src="images/login.png" /></div>
+
+                            <form class="">
+                                <fieldset>
+                                    <ul>
+                                        <li class="frame_style form_error"><label class="user_icon"></label><input name="用户名" type="text" id="username" required placeholder="用户名"/></li>
+                                        <li class="frame_style form_error"><label class="password_icon"></label><input name="密码" type="password" id="userpwd" required placeholder="密码"/></li>
+                                    </ul>
+                                   
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked> 前台
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="2"> 后台
+                                        </label>
+                                    </div>
+                                    <div class="space"></div>
+                                    <div class="clearfix">
+                                        <label class="inline">
+                                            <input type="checkbox" class="ace">
+                                            <span class="lbl">保存密码</span>
+                                        </label>
+
+                                        <button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
+                                            <i class="icon-key"></i>
+                                            登陆
+                                        </button>
+                                    </div>
+
+                                    <div class="space-4"></div>
+                                </fieldset>
+                            </form>
+
+                            <div class="social-or-login center">
+                                <span class="bigger-110">通知</span>
+                            </div>
+                        </div><!-- /widget-main -->
+                        <div class="toolbar clearfix">
+                        </div>
+                    </div><!-- /widget-body -->
+                </div><!-- /login-box -->
+            </div><!-- /position-relative -->
+        </div>
+    </div>
+    <script>
+        $('#login_btn').on('click', function () {
+            var code = $("#username").val();
+            var password = $("#userpwd").val();
+            var port = $("input:radio:checked").val();
+            var flag = fnFindData("Users", "code='" + code + "' and password='" + password + "' and port='" + port + "'");
+            if (flag == "True") { alert("登录成功"); self.location.href ="/Home/Home" }
+            else alert("登录失败")
+    });
+    </script>
+</body >
+</html >
+
+
