@@ -16,9 +16,7 @@
     <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
     <script src="~/Scripts/CSS/assets/js/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/Scripts/CSS/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-    </script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/CSS/assets/js/ace-elements.min.js"></script>
     <script src="~/Scripts/CSS/assets/js/ace.min.js"></script>
     <script src="~/Scripts/CSS/assets/js/bootstrap.min.js"></script>
@@ -49,7 +47,7 @@
                 </div>
             </div>
             <!---->
-            <iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO SRC="product_category_add" class="page_right_style"></iframe>
+            <iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO SRC="Product_category_add?name=超市总分类" class="page_right_style"></iframe>
         </div>
     </div>
 </body>
@@ -86,45 +84,18 @@
                 enable: true,
                 idKey: "id",
                 pIdKey: "pId",
-                rootPId: ""
+                rootPId: "name"
             }
         },
         callback: {
             beforeClick: function (treeId, treeNode) {
                 var zTree = $.fn.zTree.getZTreeObj("tree");
-                if (treeNode.isParent) {
-                    zTree.expandNode(treeNode);
-                    return false;
-                } else {
-                    demoIframe.attr("src", treeNode.file + ".html");
-                    return true;
-                }
+                demoIframe.attr("src", "Product_category_add?name=" + treeNode.name + "&id=" + treeNode.id + "&pid=" + treeNode.pId + "");
             }
         }
     };
 
     var zNodes;
-    //=[
-    //    { id: 1, pId: 0, name: "商城分类列表", },
-    //    { id: 11, pId: 1, name: "蔬菜水果" },
-    //    { id: 111, pId: 11, name: "蔬菜" },
-    //    { id: 112, pId: 11, name: "苹果" },
-    //    { id: 113, pId: 11, name: "大蒜" },
-    //    { id: 114, pId: 11, name: "白菜" },
-    //    { id: 115, pId: 11, name: "青菜" },
-    //    { id: 12, pId: 1, name: "手机数码" },
-    //    { id: 121, pId: 12, name: "手机 " },
-    //    { id: 122, pId: 12, name: "照相机 " },
-    //    { id: 13, pId: 1, name: "电脑配件" },
-    //    { id: 131, pId: 13, name: "手机 " },
-    //    { id: 122, pId: 13, name: "照相机 " },
-    //    { id: 14, pId: 1, name: "服装鞋帽" },
-    //    { id: 141, pId: 14, name: "手机 " },
-    //    { id: 42, pId: 14, name: "照相机 " },
-    //];
-
-    //{ "": [[{ "typecode": "1", "name": "超市总分类", "levels": "0" }, { "typecode": "11", "name": "食品类", "levels": "1" }, { "typecode": "111", "name": "蔬菜类", "levels": "11" }, { "typecode": "112", "name": "水果类", "levels": "11" }, { "typecode": "12", "name": "数码类", "levels": "1" }, { "typecode": "121", "name": "通信设备类", "levels": "12" }]}
-
     var code;
 
     function showCode(str) {
@@ -134,9 +105,13 @@
     }
 
     $(document).ready(function () {
-        debugger;
-        zNodes = fnGetDataArryObj("Commoditytype", "");
-        console.log(zNodes);
+        zNodes = fnGetDataArryObj("Commoditytype", "");//json字符串
+        var obj = JSON.parse(zNodes);
+        for (var i = 0; i < obj.length; i++) {
+            obj[i].id = parseInt(obj[i].id);
+            obj[i].pId = parseInt(obj[i].pId);
+        }
+        zNodes = obj;
         var t = $("#treeDemo");
         t = $.fn.zTree.init(t, setting, zNodes);
         demoIframe = $("#testIframe");
@@ -144,4 +119,5 @@
         var zTree = $.fn.zTree.getZTreeObj("tree");
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
+    
 </script>

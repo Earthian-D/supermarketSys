@@ -20,8 +20,11 @@ namespace supermarketSys.Controllers
         {
             return View("~/Views/Home/Category_Manage.cshtml");
         }
-        public ActionResult product_category_add()
+        public ActionResult Product_category_add(string name,string id,string pId)
         {
+            ViewBag.TypeName = name;
+            ViewBag.TypeId = id;
+            ViewBag.TypePid = pId;
             return View("~/Views/Home/product-category-add.cshtml");
         }
     }

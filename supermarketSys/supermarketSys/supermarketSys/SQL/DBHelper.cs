@@ -159,18 +159,14 @@ namespace supermarketSys.SQL
             }
         }
 
-        public bool ExcuteProcedure(string ProName, SqlParameter[] paras)
+        public bool ExcuteProcedure(string ProName, string paras)
         {
             DBOpen();
-            cmd = new SqlCommand(ProName, conn);
             cmd.CommandType = CommandType.StoredProcedure;
-
-            for (int i = 0; i < paras.Length; i++)
-            {
-                cmd.Parameters.Add(paras[i]);
-            }
             try
             {
+                string sql = "exec " + ProName + " " + paras + "";
+                cmd = new SqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 return true;
             }

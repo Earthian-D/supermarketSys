@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using supermarketSys.SQL;
 using System.Data;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace supermarketSys.Controllers
 {
@@ -23,21 +24,26 @@ namespace supermarketSys.Controllers
         /// <returns>"True""False"</returns>
         public bool FindData(string sql)
         {
-            object obj = new DBHelper().ExcuteSqlWord(sql);
-            bool msg;
-            if (obj != null) msg = true;
-            else msg = false;
-            return msg;
+            bool obj = new DBHelper().ExcuteSql(sql);
+            return obj;
         }
         /// <summary>
         /// 将datatable转json输出
         /// </summary>
         /// <param name="sql"></param>
-        /// <returns>[{"id":"XX"},{...}]格式</returns>
+        /// <returns>[{id:"XX"},{...}]格式</returns>
         public string GetJson(string sql)
         {
             DataTable tb = new DBHelper().GetDataTableBySql(sql);
-            return DataTableToArry(tb);
+            return DataTableToJson(tb);
+        }
+        public bool FnExecProcedure(string pro, string code)
+        {
+            object obj = new DBHelper().ExcuteProcedure(pro,code);
+            bool msg;
+            if (obj != null) msg = true;
+            else msg = false;
+            return msg;
         }
         public static string DataRowToJson(DataRow[] drArr)
         {
@@ -61,7 +67,7 @@ namespace supermarketSys.Controllers
             jsonBuilder.Append("]");
             return jsonBuilder.ToString();
         }
-        public static string DataTableToArry(DataTable dt)
+        public static string DataTableToJson(DataTable dt)
         {
             StringBuilder jsonBuilder = new StringBuilder();
             jsonBuilder.Append("[");
