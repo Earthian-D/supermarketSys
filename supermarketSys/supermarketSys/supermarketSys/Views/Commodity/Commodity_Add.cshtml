@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Scripts/CSS/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
+    <link href="~/Scripts/CSS/assets/css/codemirror.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/Widget/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <title>新增商品</title>
+</head>
+<body>
+    <div class="" id="add_picture">
+        <div class="">
+            
+            <form action="" method="post" class="form form-horizontal" id="form-article-add">
+                
+                <div class=" clearfix cl">
+
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">工厂码：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">商品名称：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">包装规格：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">供应商：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">危险库存：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">kg</div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">单位：</label>
+                        <div class="formControls col-2">
+                            <span class="select-box">
+                                <select class="select">
+                                    <option>请选择</option>
+                                    <option value="1">件</option>
+                                    <option value="2">斤</option>
+                                    <option value="3">KG</option>
+                                    <option value="4">吨</option>
+                                    <option value="5">套</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">进货价：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">含税单价：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">会员价：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                    </div>
+
+
+                </div>
+                <div class="clearfix cl">
+                    <div class="Button_operation">
+                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>新增商品</button>
+                        <button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>修改商品</button>
+                        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ 
+
+</body>
+</html>

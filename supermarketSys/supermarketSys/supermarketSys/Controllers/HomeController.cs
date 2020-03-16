@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+//主页控制器
 namespace supermarketSys.Controllers
 {
     public class HomeController : Controller
@@ -26,6 +26,10 @@ namespace supermarketSys.Controllers
             ViewBag.TypeId = id;
             ViewBag.TypePid = pId;
             return View("~/Views/Home/product-category-add.cshtml");
+        }
+        public ActionResult Products_List()
+        {
+            return View("~/Views/Home/Products_List.cshtml");
         }
     }
 }

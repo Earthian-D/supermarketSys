@@ -41,11 +41,7 @@
                         <input type="text" class="input-text" value="" placeholder="输入分类名称" id="kid">
                     </div>
                 </div>
-                @*<div class="">
-                        <div class="" style=" text-align:center">
-                            <input class="btn btn-primary radius" type="submit" value="提交">
-                        </div>
-                    </div>*@
+                
             </form>
         </div>
     </div>
@@ -54,36 +50,21 @@
         var name = "@ViewBag.TypeName";
         var id = "@ViewBag.TypeId";
         var pid = "@ViewBag.TypePid";
- //       $(function () {
-	//        $('.skin-minimal input').iCheck({
-	//	    checkboxClass: 'icheckbox-blue',
-	//	    radioClass: 'iradio-blue',
-	//	    increaseArea: '20%'
-	//    });
-	//$("#form-user-add").Validform({
-	//	tiptype:2,
-	//	callback:function(form){
-	//		form[0].submit();
-	//		var index = parent.layer.getFrameIndex(window.name);
-	//		parent.$('.btn-refresh').click();
-	//		parent.layer.close(index);
-	//	}
-	//});
- //       });
+
 
         function InsertData() {
             var Pname = $("#parent").val();
             var Kname = $("#kid").val();
             var code = new Array(id, pid, Kname);//数组 存储过程的参数
             var msg = fnExecProcedure("Add_Commoditytype", "'" + id + "','" + pid + "','" + Kname + "'");
-            if (msg == "True") { alert("插入成功"); location.reload() }
+            if (msg == "True") { alert("插入成功");  }
             else alert("插入失败")
         }
         function DeleteData() {
             console.log("删除")
             var Pname = $("#parent").val();
             var msg = fnDeleteData("Commoditytype", "name='" + Pname+"'");
-            if (msg == "True") { alert("删除成功"); location.reload()}
+            if (msg == "True") { alert("删除成功");}
             else alert("删除失败")
         }
     </script>

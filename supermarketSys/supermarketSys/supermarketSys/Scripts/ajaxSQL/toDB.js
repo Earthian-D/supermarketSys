@@ -72,3 +72,33 @@ function fnDeleteData(table, code) {
     });
     return data;
 }
+//插入数据格式如下
+/*var data = {
+                factorycode: "6925303730574",
+                name: "统一阿萨姆奶茶",
+                describe: "原味500ml",
+                unit: "瓶",
+                supplier: "统一集团",
+                place: "广东省惠州市",
+                production: "2020-01-06",
+                expiration: ""
+        }
+ */
+function fnInsertData(table, json) {
+    console.log(table, json)
+    var data;
+    $.ajax({
+        url: "../SQLtoDB/Save",
+        type: "post",
+        async: false,
+        dataType: "json",
+        data: {
+            tablename: table,
+            data: JSON.stringify(json)
+        },
+        success: function (msg) {
+            data = msg
+        }
+    });
+    return data;
+}

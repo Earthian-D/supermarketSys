@@ -60,8 +60,13 @@ namespace supermarketSys.SQL
                 da.Fill(dt);
                 return dt;
             }
-            catch
+            catch (Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return null;
             }
             finally
@@ -81,8 +86,13 @@ namespace supermarketSys.SQL
                 return true;
 
             }
-            catch
+            catch (Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return false;
             }
             finally
@@ -103,8 +113,13 @@ namespace supermarketSys.SQL
                 return a;
 
             }
-            catch
+            catch (Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return null;
             }
             finally
@@ -122,8 +137,13 @@ namespace supermarketSys.SQL
                 return a;
 
             }
-            catch
+            catch (Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return 0;
             }
             finally
@@ -149,8 +169,13 @@ namespace supermarketSys.SQL
                 da.Fill(dt);
                 return dt;
             }
-            catch
+            catch (Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return null;
             }
             finally
@@ -170,8 +195,13 @@ namespace supermarketSys.SQL
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                Tools.Log.LogHelper.LogFlag = true; //开启记录
+                Tools.Log.LogHelper.LogError("==========日志记录内容 Error====" + ex);
+                Tools.Log.LogHelper.LogFlag = false;//停止记录
+                Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
                 return false;
             }
             finally
@@ -181,6 +211,43 @@ namespace supermarketSys.SQL
 
         }
 
+        public bool ExcuteInsertDatatable(string tablename,DataTable dt)
+        {
+                SqlTransaction tran = null;//声明一个事务对象  
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(DBConnectString))
+                    {
+                        conn.Open();//打开链接  
+                        using (tran = conn.BeginTransaction())
+                        {
+                            using (SqlBulkCopy copy = new SqlBulkCopy(conn, SqlBulkCopyOptions.Default, tran))
+                            {
+                                copy.DestinationTableName = tablename;  //指定服务器上目标表的名称  
+                                copy.WriteToServer(dt);                      //执行把DataTable中的数据写入DB  
+                                tran.Commit();                                      //提交事务  
+                                return true;                                        //返回True 执行成功！  
+                            }
 
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    if (null != tran)
+                        tran.Rollback();
+                    Tools.Log.LogHelper log = new Tools.Log.LogHelper();
+                    Tools.Log.LogHelper.LogFlag = true; //开启记录
+                    Tools.Log.LogHelper.LogError("==========日志记录内容 Error===="+ex);
+                    Tools.Log.LogHelper.LogFlag = false;//停止记录
+                    Tools.Log.LogHelper.ExitThread();// 退出日志记录线程，一般在程序退出时候调用。
+                return false;//返回False 执行失败！  
+
+                }
+
+            
+        }
     }
 }

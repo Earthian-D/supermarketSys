@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
     <Compile Include="Global.asax.cs">
@@ -133,6 +134,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\DBHelper.cs" />
+    <Compile Include="SQL\LogHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -477,6 +479,8 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Home\Category_Manage.cshtml" />
     <Content Include="Views\Home\product-category-add.cshtml" />
+    <Content Include="Views\Home\Products_List.cshtml" />
+    <Content Include="Views\Commodity\Commodity_Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
