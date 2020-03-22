@@ -84,3 +84,4 @@ F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\obj\Debug\superma
 F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\obj\Debug\supermarketSys.csproj.CopyComplete
 F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\obj\Debug\supermarketSys.dll
 F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\obj\Debug\supermarketSys.pdb
+F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\obj\Debug\supermarketSys.csprojAssemblyReference.cache

@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
     <link href="~/Scripts/CSS/assets/css/codemirror.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="~/Scripts/CSS/Widget/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
     <title>新增商品</title>
 </head>
 <body>
@@ -24,35 +25,53 @@
 
                     <div class="Add_p_s">
                         <label class="form-label col-2">工厂码：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="factorycode" name=""></div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">商品名称：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="name" name=""></div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">包装规格：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="describe" name=""></div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">供应商：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name=""></div>
+                        <div class="formControls col-2">
+                            <span class="select-box">
+                                <select class="select" id="suppliercode">
+                                    <option>请选择</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">产地：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="place" name=""></div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">危险库存：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">kg</div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="riskinventory" name=""></div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">单位：</label>
                         <div class="formControls col-2">
                             <span class="select-box">
-                                <select class="select">
-                                    <option>请选择</option>
-                                    <option value="1">件</option>
-                                    <option value="2">斤</option>
-                                    <option value="3">KG</option>
-                                    <option value="4">吨</option>
-                                    <option value="5">套</option>
+                                <select class="select" id="unit">
+                                    <option value="件">件</option>
+                                    <option value="斤">斤</option>
+                                    <option value="KG">KG</option>
+                                    <option value="吨">吨</option>
+                                    <option value="套">套</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">分类：</label>
+                        <div class="formControls col-2">
+                            <span class="select-box">
+                                <select class="select" id="typecode">
                                 </select>
                             </span>
                         </div>
@@ -60,17 +79,16 @@
                     <br />
                     <div class="Add_p_s">
                         <label class="form-label col-2">进货价：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="purchasingprice" name="">元</div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">含税单价：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="sellingprice" name="">元</div>
                     </div>
                     <div class="Add_p_s">
                         <label class="form-label col-2">会员价：</label>
-                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="" name="">元</div>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="vipprice" name="">元</div>
                     </div>
-
 
                 </div>
                 <div class="clearfix cl">
@@ -83,7 +101,50 @@
             </form>
         </div>
     </div>
- 
+ <script type="text/javascript">
+     $(function () {
+         var data = fnGetDataArryObj("Commoditytype", "");
+         var data1 = fnGetDataArryObj("Supplier", "");
+         data = JSON.parse(data);
+         data1 = JSON.parse(data1);
+         for (var i = 0;i<data.length; i++) {
+             $("#typecode").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
+         }
+         for (var i = 0; i < data.length; i++) {
+             $("#suppliercode").append("<option value=" + data1[i].suppliercode + ">" + data1[i].name + "</option>");
+         }
+     });
+     function layer_close() {
+         history.go(-1);
+     }
+     function article_save_submit() {
+         var PriceData = {
+             factorycode: $("#factorycode").val(),
+             purchasingprice: parseFloat($("#purchasingprice").val()),
+             sellingprice: parseFloat($("#sellingprice").val()),
+             vipprice: parseFloat($("#vipprice").val()),
+             version:"1.0"
+         }
+         var CommodityData = {
+             factorycode: $("#factorycode").val(),
+             name: $("#name").val(),
+             describe: $("#describe").val(),
+             unit: $("#unit").val(),
+             suppliercode: $("#suppliercode").val(),
+             place: $("#place").val(),
+         }
+         var TypeData = {
+             factorycode: $("#factorycode").val(),
+             typecode: $("#typecode").val()
+         }
+         fnInsertData("Prices", PriceData);
+         fnInsertData("Type", TypeData);
+         var msg = fnInsertData("Commodity", CommodityData);
+         if (typeof (mag) == "undefined") alert("执行成功");
+         else alert("执行动作失败，请联系管理员")
+         
+     }
+ </script>
 
 </body>
 </html>

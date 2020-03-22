@@ -187,7 +187,7 @@ namespace supermarketSys.SQL
         public bool ExcuteProcedure(string ProName, string paras)
         {
             DBOpen();
-            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandType = CommandType.StoredProcedure;
             try
             {
                 string sql = "exec " + ProName + " " + paras + "";

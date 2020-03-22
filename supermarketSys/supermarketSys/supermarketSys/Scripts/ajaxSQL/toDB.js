@@ -85,7 +85,6 @@ function fnDeleteData(table, code) {
         }
  */
 function fnInsertData(table, json) {
-    console.log(table, json)
     var data;
     $.ajax({
         url: "../SQLtoDB/Save",
@@ -98,6 +97,7 @@ function fnInsertData(table, json) {
         },
         success: function (msg) {
             data = msg
+            
         }
     });
     return data;
