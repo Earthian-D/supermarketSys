@@ -1,0 +1,11 @@
+2020-04-08 20:38:20 Error ==========日志记录内容 Error====System.Data.SqlClient.SqlException (0x80131904): 转换 nvarchar 值 '123664565525' 时溢出了整数列。
+语句已终止。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 supermarketSys.SQL.DBHelper.ExcuteSql(String sql) 位置 F:\supermarketSys\supermarketSys\supermarketSys\supermarketSys\SQL\DBHelper.cs:行号 85
+ClientConnectionId:10b3b5a9-26fa-42e3-9dd9-9981d3481183
+Error Number:248,State:1,Class:16
