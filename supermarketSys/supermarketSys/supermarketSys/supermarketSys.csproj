@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderformController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
     <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Global.asax.cs">
@@ -529,8 +530,6 @@
     <Content Include="Scripts\bootstrap-table-master\src\vue\index.js" />
     <Content Include="Scripts\bootstrap-table-master\tools\check-api.js" />
     <Content Include="Scripts\bootstrap-table-master\tools\check-locale.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CSS\assets\dist\.DS_Store" />
     <Content Include="Scripts\CSS\assets\font\fontawesome-webfont.eot" />
     <Content Include="Scripts\CSS\assets\font\fontawesome-webfont.ttf" />
@@ -682,11 +681,6 @@
     <Content Include="Scripts\bootstrap-table-master\src\vue\BootstrapTable.vue" />
     <Content Include="Scripts\bootstrap-table-master\tools\README.md" />
     <Content Include="Scripts\bootstrap-table-master\_config.yml" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\CSS\ace-ie.min.css" />
-    <Content Include="Scripts\CSS\ace-rtl.min.css" />
-    <Content Include="Scripts\CSS\ace-skins.min.css" />
-    <Content Include="Scripts\CSS\ace.min.css" />
     <Content Include="Scripts\CSS\assets\avatars\avatar.png" />
     <Content Include="Scripts\CSS\assets\avatars\avatar1.png" />
     <Content Include="Scripts\CSS\assets\avatars\avatar2.png" />
@@ -819,8 +813,6 @@
     <Content Include="Scripts\CSS\css\easyui_style.css" />
     <Content Include="Scripts\CSS\css\login.css" />
     <Content Include="Scripts\CSS\css\style.css" />
-    <Content Include="Scripts\CSS\easyui_style.css" />
-    <Content Include="Scripts\CSS\font-awesome.min.css" />
     <Content Include="Scripts\CSS\font\css\font-awesome.css" />
     <Content Include="Scripts\CSS\font\css\font-awesome.min.css" />
     <Content Include="Scripts\CSS\font\fonts\fontawesome-webfont.svg" />
@@ -878,8 +870,6 @@
     <Content Include="Scripts\CSS\js\jquery.SuperSlide.2.1.1.js" />
     <Content Include="Scripts\CSS\js\lrtk.js" />
     <Content Include="Scripts\CSS\js\respond.min.js" />
-    <Content Include="Scripts\CSS\login.css" />
-    <Content Include="Scripts\CSS\style.css" />
     <Content Include="Scripts\CSS\Widget\zTree\css\zTreeStyle\img\diy\1_close.png" />
     <Content Include="Scripts\CSS\Widget\zTree\css\zTreeStyle\img\diy\1_open.png" />
     <Content Include="Scripts\CSS\Widget\zTree\css\zTreeStyle\img\diy\2.png" />
@@ -900,15 +890,7 @@
     <Content Include="Scripts\CSS\Widget\zTree\js\jquery.ztree.excheck-3.5.min.js" />
     <Content Include="Scripts\CSS\Widget\zTree\js\jquery.ztree.exedit-3.5.min.js" />
     <Content Include="Scripts\CSS\Widget\zTree\js\jquery.ztree.exhide-3.5.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JS\ace-extra.min.js" />
     <Content Include="Scripts\JS\displayPart.js" />
     <Content Include="Scripts\JS\dragDivResize.js" />
@@ -1041,7 +1023,6 @@
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\tree.js" />
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\upload.js" />
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\util.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1084,8 +1065,8 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Home\homeindex.cshtml" />
+    <Content Include="Views\Orderform\Orderform.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />

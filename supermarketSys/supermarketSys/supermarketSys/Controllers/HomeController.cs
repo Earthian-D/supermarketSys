@@ -31,5 +31,9 @@ namespace supermarketSys.Controllers
         {
             return View("~/Views/Home/Products_List.cshtml");
         }
+        public ActionResult homeindex()
+        {
+            return View("~/Views/Home/homeindex.cshtml");
+        }
     }
 }

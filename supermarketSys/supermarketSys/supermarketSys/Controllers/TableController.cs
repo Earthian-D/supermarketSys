@@ -17,7 +17,7 @@ namespace supermarketSys.Controllers
         public ActionResult Table(string name,string cols)
         {
 
-           // name = "Commodity";
+            //name = "v_Commodity";
             ViewBag.name = name;
             ViewBag.cols = cols;
             tablename = name;
