@@ -17,7 +17,7 @@
     <button type="button" class="layui-btn layui-btn-lg layui-btn-normal" style="margin-left:20px;top:20px" onclick="orderbox()">商品进货</button>
     @*<button type="button" class="layui-btn layui-btn-lg layui-btn-danger">商品退货</button>*@
     <div id="testIframe" style="height:500px">
-        <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="/Table/Table?name=Commodity">  </iframe>
+        <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="/Table/Table?name=v_OrderformList">  </iframe>
     </div>
     <div id="orderbox" style="display:none">
         <form class="layui-form" action="">
@@ -168,7 +168,7 @@
                         ]],
                         done: function (res, curr, count) {
                             viewObj.tbData = res.data;
-                            console.log(res.data)
+                            
                         }
                     });
 
@@ -222,19 +222,10 @@
                                 "checktime": $("#checktime").val(),
                                 "state": $("#state").val(),
                             }
-                            var msg= fnInsertData("Orderform", order)
-                            for (var i; i < viewObj.tbData.length; i++) {
-                                var orderdetail = {
-                                    "orderno": $("#orderno").val(),
-                                    "factorycode": viewObj.tbData[i].factorycode,
-                                    "num": parseFloat(viewObj.tbData[i].num),
-                                    "price": parseFloat(viewObj.tbData[i].num),
-                                    "sumprice": parseFloat(orderdetail.num * orderdetail.price)
-
-                                }
-                                fnInsertData("OrderformDetail", orderdetail)
-                            }
-                            if (typeof (mag) == "undefined") alert("执行成功");
+                            var msg = fnInsertData("Orderform", order);
+                            insertdetail();
+                           
+                            if (typeof (msg) == "undefined") alert("执行成功");
                             else alert("执行动作失败，请联系管理员")
                         //    var oldData = table.cache[layTableId];
                         //    for (var i = 0, row; i < oldData.length; i++) {
@@ -245,6 +236,21 @@
                         //        //}
                         //    }
                         //    document.getElementById("jsonResult").innerHtml = JSON.stringify(table.cache[layTableId], null, 2);	//使用JSON.stringify() 格式化输出JSON字符串
+                        }
+                    }
+                    function insertdetail() {
+                        for (var i = 0; i < viewObj.tbData.length; i++) {
+                          var  orderdetail = {
+                                "orderno": $("#orderno").val(),
+                                "factorycode": viewObj.tbData[i].factorycode,
+                              "num": parseFloat(viewObj.tbData[i].num),
+                              "price": parseFloat(viewObj.tbData[i].price),
+                              "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price))
+
+                            }
+                            
+                            fnInsertData("OrderformDetail", orderdetail)
+                            
                         }
                     }
                     function GetName(d) {
@@ -267,43 +273,14 @@
                         activeByType(type);
                     });
 
-                    //监听select下拉选中事件
-                    //form.on('select(type)', function (data) {
-                    //    var elem = data.elem; //得到select原始DOM对象
-                    //    $(elem).prev("a[lay-event='type']").trigger("click");
-                    //});
-                    ////监听点击表格
-                    //table.on('edit(dataTable)', function (obj) {
-                    //    var data = obj.data, event = obj.event, tr = obj.tr; //获得当前行 tr 的DOM对象;
-                    //    var keys = Object.keys(data);
-                    //    var data = fnGetDataArryObj("Commodity", keys[0] + "='" + eval("data." + keys[0]) + "'");
-                    //    data = JSON.parse(data);
-                    //    obj.data["name"] = data[0].name
-                    //    obj.data["sumpirce"] = data[0].num * data[0].pirce;
-                    //});
+                    
                     //监听工具条
                     table.on('tool(dataTable)', function (obj) {
                         var data = obj.data, event = obj.event, tr = obj.tr; //获得当前行 tr 的DOM对象;
                         switch (event) {
-                            //case "type":
-                            //    var select = tr.find("select[name='type']");
-                            //    if (select) {
-                            //        var selectedVal = select.val();
-                            //        if (!selectedVal) {
-                            //            layer.tips("请选择一个分类", select.next('.layui-form-select'), { tips: [3, '#FF5722'] }); //吸附提示
-                            //        }
-                            //        $.extend(obj.data, { 'type': selectedVal });
-                            //        activeByType('updateRow', obj.data);	//更新行记录对象
-                            //    }
-                            //    break;
-                            //case "state":
-                            //    var stateVal = tr.find("input[name='state']").prop('checked') ? 1 : 0;
-                            //    $.extend(obj.data, { 'state': stateVal })
-                            //    activeByType('updateRow', obj.data);	//更新行记录对象
-                            //    break;
                             case "del":
                                 layer.confirm('真的删除行么？', function (index) {
-                                    console.log(index)
+                                    
                                     obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                     layer.close(index+1);
                                     activeByType('removeEmptyTableCache');
@@ -334,21 +311,7 @@
     </div>
 
 
-    <script>
-
-                //layui.use('table', function () {
-                //    var table = layui.table;
-
-
-                //});
-                ////监听单元格编辑
-                //table.on('edit(orderdetail)', function (obj) {
-                //    var value = obj.value //得到修改后的值
-                //        , data = obj.data //得到所在行所有键值
-                //        , field = obj.field; //得到字段
-                //    layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
-                //});
-    </script>
+    
 </body>
 
 </html>

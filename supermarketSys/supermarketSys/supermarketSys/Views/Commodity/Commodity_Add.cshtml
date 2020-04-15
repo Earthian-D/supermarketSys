@@ -137,8 +137,15 @@
              factorycode: $("#factorycode").val(),
              typecode: $("#typecode").val()
          }
+         var Inventory = {
+             factorycode: $("#factorycode").val(),
+             inventory: 0,
+             riskinventory: parseInt($("#riskinventory").val())
+             
+         }
          fnInsertData("Prices", PriceData);
          fnInsertData("Type", TypeData);
+         fnInsertData("Inventory", Inventory);
          var msg = fnInsertData("Commodity", CommodityData);
          if (typeof (mag) == "undefined") alert("执行成功");
          else alert("执行动作失败，请联系管理员")

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\OrderformController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
     <Compile Include="Controllers\TableController.cs" />
@@ -1067,6 +1068,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\homeindex.cshtml" />
     <Content Include="Views\Orderform\Orderform.cshtml" />
+    <Content Include="Views\Inventory\Inventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />
