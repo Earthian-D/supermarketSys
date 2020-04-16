@@ -128,12 +128,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommodityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\OrderformController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
     <Compile Include="Controllers\TableController.cs" />
+    <Compile Include="Controllers\VIPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1024,6 +1026,7 @@
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\tree.js" />
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\upload.js" />
     <Content Include="Scripts\layui-v2.5.6\layui\lay\modules\util.js" />
+    <Content Include="Views\Admin\administrator.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1069,6 +1072,10 @@
     <Content Include="Views\Home\homeindex.cshtml" />
     <Content Include="Views\Orderform\Orderform.cshtml" />
     <Content Include="Views\Inventory\Inventory.cshtml" />
+    <Content Include="Views\Inventory\InventoryDetail.cshtml" />
+    <Content Include="Views\Admin\admin.cshtml" />
+    <Content Include="Views\VIP\user_list.cshtml" />
+    <Content Include="Views\VIP\member_level.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />

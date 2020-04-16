@@ -41,8 +41,8 @@
             <div class="search_style">
 
                 <ul class="search_content clearfix">
-                    <li><label class="l_f">产品名称</label><input name="" type="text" class="text_add" placeholder="输入商品名称" style=" width:250px" /></li>
-                    <li style="width:90px;"><button type="button" class="btn_search" onclick="InsertData()"><i class="icon-search"></i>查询</button></li>
+                    <li><label class="l_f">产品名称</label><input id="text" name="" type="text" class="text_add" placeholder="输入商品名称" style=" width:250px" /></li>
+                    <li style="width:90px;"><button type="button" class="btn_search" onclick="Select()"><i class="icon-search"></i>查询</button></li>
                 </ul>
             </div>
             <div class="border clearfix">
@@ -155,5 +155,10 @@ function showCode(str) {
         var zTree = $.fn.zTree.getZTreeObj("tree");
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
-
+    function Select() {
+        var condition = "name = '" + $("#text").val() + "'"
+        console.log(condition)
+        // $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=factorycode=" + condition)
+        $("#iframe").attr("src", "/Table/Table?name=Commodity&code=" + condition);
+    }
 </script>

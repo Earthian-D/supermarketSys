@@ -67,6 +67,25 @@
                     field: 'riskinventory', title: '危险库存', }
             ]];
             break; 
+        case "v_InventoryDetail":
+            cols = [[
+                {
+                    field: 'orderno', title: '订单号', sort: true, fixed: 'left'
+                }
+                , {
+                    field: 'factorycode', title: '工厂码'
+                }
+                , {
+                    field: 'name', title: '商品名称', sort: true
+                }
+                , {
+                    field: 'num', title: '数量',
+                }
+                , {
+                    field: 'state', title: '类型',
+                }
+            ]];
+            break; 
 
     }
     return cols;

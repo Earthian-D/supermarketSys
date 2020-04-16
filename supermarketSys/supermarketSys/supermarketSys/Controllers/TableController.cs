@@ -13,19 +13,20 @@ namespace supermarketSys.Controllers
     public class TableController : Controller
     {
         public static string tablename;
+        public static string codes;
         // GET: Table
-        public ActionResult Table(string name,string cols)
+        public ActionResult Table(string name,string code)
         {
 
             //name = "v_Commodity";
             ViewBag.name = name;
-            ViewBag.cols = cols;
             tablename = name;
+            codes = (code==null?"1=1":code);
             return View("~/Views/Table/BootstrapTable.cshtml");
         }
         public string GetJson()
         {
-            string sql = "select * from " + tablename;
+            string sql = "select * from " + tablename+" where "+codes;
             DataTable tb = new DBHelper().GetDataTableBySql(sql);
             return DataTableToJson(tb);
         }

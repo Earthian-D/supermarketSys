@@ -13,5 +13,9 @@ namespace supermarketSys.Controllers
         {
             return View("~/Views/Inventory/Inventory.cshtml");
         }
+        public ActionResult Inventory()
+        {
+            return View("~/Views/Inventory/InventoryDetail.cshtml");
+        }
     }
 }

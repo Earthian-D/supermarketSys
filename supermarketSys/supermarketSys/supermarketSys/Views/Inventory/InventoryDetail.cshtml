@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Scripts/layui-v2.5.6/layui/css/layui.css" media="all">
+    <script src="~/Scripts/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>库存明细</title>
+</head>
+<body>
+    <div class="layui-form-item">
+        <label class="layui-form-label">工厂码</label>
+        <div class="layui-input-block">
+            <input id="text" type="text" name="" placeholder="请输入(不支持模糊搜索)" autocomplete="off" class="layui-input" style="width:250px;float:left;margin-right:10px">
+            <button type="button" class="layui-btn layui-btn-normal" onclick="Select()" id="button">搜索</button>
+        </div>
+       
+    </div>
+    <div id="testIframe" style="height:500px">
+        <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="">  </iframe>
+    </div>
+    <script type="text/javascript">
+        function Select() {
+            var condition = "factorycode = '" + $("#text").val() + "'"
+            console.log(condition)
+            // $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=factorycode=" + condition)
+            $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=" + condition);
+        }
+    </script>
+</body>
+</html>
