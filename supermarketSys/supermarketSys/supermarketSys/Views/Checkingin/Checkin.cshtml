@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Scripts/layui-v2.5.6/layui/css/layui.css" media="all">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>考勤打卡</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <h3>欢迎你~</h3>
+        <h3 id="name"></h3>
+        <button type="button" class="layui-btn layui-btn-normal" onclick="checkin()">打卡上班</button>
+        <button type="button" class="layui-btn layui-btn-normal" onclick="checkout()">打卡下班</button>
+    </div>
+    <div id="testIframe" style="height:500px">
+        <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="/Table/Table?name=v_Jobrecord">  </iframe>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var emp = "@ViewBag.empcode"
+            var empname = fnGetDataArryObj("Staff", "code='" + emp + "'");
+            empname = JSON.parse(empname)
+            $("#name").text(empname[0].name)
+        })
+        function checkin() {
+             var emp = "@ViewBag.empcode"
+            var time = new Date();
+            var timein = time.getFullYear().toString() + "-" + (time.getMonth() + 1).toString() + "-" + time.getDate().toString() + " " + time.getHours().toString() + ":" + time.getMinutes().toString() + ":" + time.getSeconds().toString();
+            var checkin = {
+                "fid":"",
+                "code": emp,
+                "goworktime": timein,
+                "afterworktime":""
+                
+            }
+            fnInsertData("Jobrecord", checkin);
+            
+            $("#iframe").attr("src", "/Table/Table?name=v_Jobrecord")
+            alert("打卡成功！")
+        }
+        function checkout() {
+             var emp = "@ViewBag.empcode"
+            var time = new Date();
+            var timein = time.getFullYear().toString() + "-" + (time.getMonth() + 1).toString() + "-" + time.getDate().toString() + " " + time.getHours().toString() + ":" + time.getMinutes().toString() + ":" + time.getSeconds().toString();
+            var checkout = {
+                "fid":"",
+                "code": emp,
+                "goworktime": "",
+                "afterworktime": timein
+            }
+            fnInsertData("Jobrecord", checkout);
+           
+            $("#iframe").attr("src", "/Table/Table?name=v_Jobrecord")
+            alert("打卡成功！")
+        }
+    </script>
+</body>
+</html>

@@ -36,7 +36,11 @@
                 , {
                     field: 'checktime', title: '进货时间', sort: true }
                 , {
-                    field: 'state', title: '订单类型', }
+                    field: 'state', title: '订单类型',
+                }
+                , {
+                    field: 'factorycode', title: '工厂码',
+                }
                 , {
                     field: 'factoryname', title: '商品', }
                 , { field: 'num', title: '数量', sort: true }
@@ -83,6 +87,53 @@
                 }
                 , {
                     field: 'state', title: '类型',
+                }
+            ]];
+            break; 
+        case "v_SalesformDetail":
+            cols = [[
+                {
+                    field: 'Salesorderno', title: '销售单号', sort: true, fixed: 'left'
+                }
+                , {
+                    field: 'factorycode', title: '工厂码'
+                }
+                , {
+                    field: 'name', title: '商品名称', sort: true
+                }
+                , {
+                    field: 'num', title: '数量',
+                }
+                , {
+                    field: 'price', title: '单价',
+                }
+                , {
+                    field: 'pricestate', title: '类型',
+                }
+                , {
+                    field: 'sumprice', title: '合计',
+                }
+            ]];
+            break; 
+        case "v_Jobrecord":
+            cols = [[
+                {
+                    field: 'code', title: '工号', sort: true, fixed: 'left'
+                }
+                , {
+                    field: 'name', title: '姓名'
+                }
+                , {
+                    field: 'duty', title: '职务', sort: true
+                }
+                , {
+                    field: 'dept', title: '部门',
+                }
+                , {
+                    field: 'goworktime', title: '上班时间',
+                }
+                , {
+                    field: 'afterworktime', title: '下班时间',
                 }
             ]];
             break; 

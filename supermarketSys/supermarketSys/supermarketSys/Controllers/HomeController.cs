@@ -8,12 +8,14 @@ namespace supermarketSys.Controllers
 {
     public class HomeController : Controller
     {
+        public static string empcode;
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Home()
+        public ActionResult Home(string code)
         {
+            empcode = code;
             return View("~/Views/Home/Home.cshtml");
         }
         public ActionResult Category_Manage()
@@ -34,6 +36,16 @@ namespace supermarketSys.Controllers
         public ActionResult homeindex()
         {
             return View("~/Views/Home/homeindex.cshtml");
+        }
+        public ActionResult HomeWeb(string code)
+        {
+            empcode = code;
+            return View("~/Views/Home/HomeWeb.cshtml");
+        }
+        public ActionResult Checkingin()
+        {
+            ViewBag.empcode = empcode;
+            return View("~/Views/Checkingin/Checkin.cshtml");
         }
     }
 }

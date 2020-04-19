@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\OrderformController.cs" />
+    <Compile Include="Controllers\SellingController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
     <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Controllers\VIPController.cs" />
@@ -1076,6 +1077,10 @@
     <Content Include="Views\Admin\admin.cshtml" />
     <Content Include="Views\VIP\user_list.cshtml" />
     <Content Include="Views\VIP\member_level.cshtml" />
+    <Content Include="Views\Home\HomeWeb.cshtml" />
+    <Content Include="Views\Selling\Salesorder.cshtml" />
+    <Content Include="Views\Selling\SalesorderList.cshtml" />
+    <Content Include="Views\Checkingin\Checkin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />

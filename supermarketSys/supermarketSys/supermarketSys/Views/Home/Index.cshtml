@@ -99,9 +99,20 @@
             var code = $("#username").val();
             var password = $("#userpwd").val();
             var port = $("input:radio:checked").val();
-            var flag = fnFindData("Users", "code='" + code + "' and password='" + password + "' and port='" + port + "'");
-            if (flag == "True") { alert("登录成功"); self.location.href ="/Home/Home" }
-            else alert("登录失败")
+            var flag = fnGetDataArryObj("Users", "code='" + code + "' and password='" + password + "'");
+            flag = JSON.parse(flag)
+            console.log(flag[0].port)
+            if (flag[0].code==code) {
+                if (flag[0].port == 1&&port == 1) { alert("登录成功"); self.location.href = "/Home/HomeWeb?code="+code }
+                else if (flag[0].port == 2 && port == 2) { alert("登录成功"); self.location.href = "/Home/Home?code=" + code  }
+                else if (flag[0].port == 3) {
+                    alert("登录成功");
+                    if (port == 1) { alert("登录成功"); self.location.href = "/Home/HomeWeb?code=" + code  }
+                    else if (port == 2) { alert("登录成功"); self.location.href = "/Home/Home?code=" + code  }
+                }
+                else alert("登录失败,没有权限");
+            }
+            else alert("登录失败,没有权限")
     });
     </script>
 </body >
