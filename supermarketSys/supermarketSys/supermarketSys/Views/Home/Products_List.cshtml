@@ -49,11 +49,11 @@
                 <span class="l_f">
                     <a href="/Commodity/Commodity_Add" title="添加商品" class="btn btn-warning Order_form"><i class="icon-plus"></i>添加商品</a>
                 </span>
-                <span class="r_f">共：<b>2334</b>件商品</span>
+                @*<span class="r_f">共：<b>2334</b>件商品</span>*@
             </div>
             <!--产品列表展示-->
-            <div class="h_products_list clearfix" id="products_list">
-                @*<div id="scrollsidebar" class="left_Treeview">
+            @*<div class="h_products_list clearfix" id="products_list">
+                <div id="scrollsidebar" class="left_Treeview">
                     <div class="show_btn" id="rightArrow"><span></span></div>
                     <div class="widget-box side_content">
                         <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
@@ -64,10 +64,11 @@
                             </div>
                         </div>
                     </div>
-                </div>*@
-                <div class="table_menu_list" id="testIframe">
-                    <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="">  </iframe>
                 </div>
+
+            </div>*@
+            <div class="table_menu_list" id="testIframe" style="text-align:center">
+                <iframe id="iframe" style="border:0; width:120%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="/Table/Table?name=Commodity">  </iframe>
             </div>
         </div>
     </div>
@@ -156,7 +157,7 @@ function showCode(str) {
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
     function Select() {
-        var condition = "name = '" + $("#text").val() + "'"
+        var condition = "name like '%" + $("#text").val() + "%'"
         console.log(condition)
         // $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=factorycode=" + condition)
         $("#iframe").attr("src", "/Table/Table?name=Commodity&code=" + condition);

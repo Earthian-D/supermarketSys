@@ -25,7 +25,7 @@
                 <div class="layui-col-xs6">
                     <label class="layui-form-label">订单号</label>
                     <div class="layui-input-block">
-                        <input type="text" id="orderno" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="orderno" id="orderno" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -192,14 +192,22 @@
                             });
                         },
                         removeEmptyTableCache: function () {
-                            var oldData = table.cache[layTableId];
-                            for (var i = 0, row; i < oldData.length; i++) {
-                                row = oldData[i];
-                                if (!row || !row.tempId) {
-                                    oldData.splice(i, 1);    //删除一项
-                                }
-                                continue;
+                            //var oldData = table.cache[layTableId];
+                            //for (var i = 0, row; i < oldData.length; i++) {
+                            //    row = oldData[i];
+                            //    if (!row || !row.tempId) {
+                            //        oldData.splice(i, 1);    //删除一项
+                            //    }
+                            //    continue;
+                                var oldData = table.cache[layTableId];
+                                for (var i = 0, row; i < oldData.length; i++) {
+                                    row = oldData[i];
+                                    if (!row || !row.tempId) {
+                                        oldData.splice(oldData.length, 1);    //删除一项
+                                    }
+                                    continue;
                             }
+
                             tableIns.reload({
                                 data: oldData
                             });
@@ -212,22 +220,17 @@
                                 "checktime": $("#checktime").val(),
                                 "state": $("#state").val(),
                             }
-                            var msg = fnInsertData("Orderform", order);
-                            insertdetail();
-                           
-                            if (typeof (msg) == "undefined") alert("执行成功");
-                            else alert("执行动作失败，请联系管理员")
-                        //    var oldData = table.cache[layTableId];
-                        //    for (var i = 0, row; i < oldData.length; i++) {
-                        //        row = oldData[i];
-                        //        //if (!row.type) {
-                        //        //    layer.msg("表格不能为空", { icon: 5 }); //提示
-                        //        //    return;
-                        //        //}
-                        //    }
-                        //    document.getElementById("jsonResult").innerHtml = JSON.stringify(table.cache[layTableId], null, 2);	//使用JSON.stringify() 格式化输出JSON字符串
-                        }
+                            if (order.orderno == "" || order.suppliercode == "" || order.total == "" || order.checktime == "" || order.state == "") alert("表单不能为空，请填写正确")
+                            else {
+                                var msg = fnInsertData("Orderform", order);
+                                insertdetail();
+                                if (typeof (msg) == "undefined") alert("执行成功");
+                                else alert("执行动作失败，请联系管理员")
+                            }
+                            
+                         }
                     }
+                    
                     function insertdetail() {
                         for (var i = 0; i < viewObj.tbData.length; i++) {
                           var  orderdetail = {
@@ -238,8 +241,11 @@
                               "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price))
 
                             }
+                            if (orderdetail.orderno == "") alert("第"+(i+1)+"明细数据有误，请仔细检查")
+                            else {
+                                fnInsertData("OrderformDetail", orderdetail)
+                            }
                             
-                            fnInsertData("OrderformDetail", orderdetail)
                             
                         }
                     }
@@ -274,6 +280,7 @@
                                     obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                                     layer.close(index+1);
                                     activeByType('removeEmptyTableCache');
+                                    layer.closeAll('dialog');
                                 });
                                 break;
                         }

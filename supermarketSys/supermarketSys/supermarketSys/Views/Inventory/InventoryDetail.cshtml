@@ -27,7 +27,7 @@
     </div>
     <script type="text/javascript">
         function Select() {
-            var condition = "factorycode = '" + $("#text").val() + "'"
+            var condition = " factorycode like '" + $("#text").val() + "%'"
             console.log(condition)
             // $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=factorycode=" + condition)
             $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=" + condition);
