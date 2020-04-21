@@ -16,6 +16,7 @@ namespace supermarketSys.Controllers
         public ActionResult Home(string code)
         {
             empcode = code;
+            ViewBag.empcode = code;
             return View("~/Views/Home/Home.cshtml");
         }
         public ActionResult Category_Manage()
@@ -40,6 +41,7 @@ namespace supermarketSys.Controllers
         public ActionResult HomeWeb(string code)
         {
             empcode = code;
+            ViewBag.empcode = code;
             return View("~/Views/Home/HomeWeb.cshtml");
         }
         public ActionResult Checkingin()

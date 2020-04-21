@@ -10,14 +10,15 @@
 		<script src="~/Scripts/CSS/assets/js/ace-extra.min.js"></script>
 		<script src="~/Scripts/CSS/assets/js/jquery.min.js"></script>        
            	<script src="~/Scripts/CSS/assets/dist/echarts.js"></script>
-        <script src="~/Scripts/CSS/assets/js/bootstrap.min.js"></script>            
+        <script src="~/Scripts/CSS/assets/js/bootstrap.min.js"></script>   
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
        <title></title>
        </head>		
 <body>
 <div class="page-content clearfix">
  <div class="alert alert-block alert-success">
   <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
-  <i class="icon-ok green"></i>欢迎使用<strong class="green">超市管理系统<small></small></strong>,你本次登陆时间为2016年7月12日13时34分，登陆IP:192.168.1.110.	
+  <i class="icon-ok green"></i>欢迎使用<strong class="green">超市管理系统<small></small></strong>
  </div>
  <div class="state-overview clearfix">
                   <div class="col-lg-3 col-sm-6">
@@ -27,8 +28,8 @@
                              <i class="icon-user"></i>
                           </div>
                           <div class="value">
-                              <h1>34522</h1>
-                              <p>商城用户</p>
+                              <h1 id="vipnum"></h1>
+                              <p>vip用户</p>
                           </div>
                           </a>
                       </section>
@@ -39,8 +40,8 @@
                               <i class="icon-tags"></i>
                           </div>
                           <div class="value">
-                              <h1>140</h1>
-                              <p>分销记录</p>
+                              <h1 id="ordernum"></h1>
+                              <p>累积进货订单</p>
                           </div>
                       </section>
                   </div>
@@ -50,8 +51,8 @@
                               <i class="icon-shopping-cart"></i>
                           </div>
                           <div class="value">
-                              <h1>345</h1>
-                              <p>商城订单</p>
+                              <h1 class="salesnum"></h1>
+                              <p>累积超市订单</p>
                           </div>
                       </section>
                   </div>
@@ -61,8 +62,8 @@
                               <i class="icon-bar-chart"></i>
                           </div>
                           <div class="value">
-                              <h1>￥34,500</h1>
-                              <p>交易记录</p>
+                              <h1 class="salesprice"></h1>
+                              <p>销售额</p>
                           </div>
                       </section>
                   </div>
@@ -73,11 +74,9 @@
           <div class="title_name">危险库存提示</div>
            <table class="table table-bordered">
            <tbody>
-           <tr><td class="name">未处理订单：</td><td class="munber"><a href="#">0</a>&nbsp;个</td></tr>
-           <tr><td class="name">待发货订单：</td><td class="munber"><a href="#">10</a>&nbsp;个</td></tr>
-           <tr><td class="name">待结算订单：</td><td class="munber"><a href="#">13</a>&nbsp;个</td></tr>
-           <tr><td class="name">已成交订单数：</td><td class="munber"><a href="#">26</a>&nbsp;个</td></tr>
-           <tr><td class="name">交易失败：</td><td class="munber"><a href="#">26</a>&nbsp;个</td></tr>
+           <tr><td class="name">危险商品数：</td><td class="munber"><a href="#">0</a>&nbsp;个</td></tr>
+           <tr><td class="name">缺货数量：</td><td class="munber"><a href="#">0</a>&nbsp;个</td></tr>
+           <tr><td class="name">危险商品种类数：</td><td class="munber"><a href="#">0</a>&nbsp;个</td></tr>
            </tbody>
           </table>
          </div> 
@@ -85,23 +84,18 @@
           <div class="title_name">商品统计信息</div>
            <table class="table table-bordered">
            <tbody>
-           <tr><td class="name">商品总数：</td><td class="munber"><a href="#">340</a>&nbsp;个</td></tr>
-           <tr><td class="name">回收站商品：</td><td class="munber"><a href="#">10</a>&nbsp;个</td></tr>
-           <tr><td class="name">上架商品：</td><td class="munber"><a href="#">13</a>&nbsp;个</td></tr>
-           <tr><td class="name">下架商品：</td><td class="munber"><a href="#">26</a>&nbsp;个</td></tr>
-           <tr><td class="name">商品评论：</td><td class="munber"><a href="#">21s6</a>&nbsp;条</td></tr>
-
+           <tr><td class="name">商品总数：</td><td class="munber"><a href="#" id="commoditynum"></a>&nbsp;个</td></tr>
+           <tr><td class="name">总库存：</td><td class="munber"><a href="#" id="commodityInvent"></a>&nbsp;个</td></tr>
            </tbody>
           </table>
          </div> 
          <div class="Order_Statistics">
-          <div class="title_name">昨日销售额</div>
+          <div class="title_name">累积销售额</div>
            <table class="table table-bordered">
            <tbody>
-           <tr><td class="name">注册会员登陆：</td><td class="munber"><a href="#">3240</a>&nbsp;次</td></tr>
-           <tr><td class="name">新浪会员登陆：</td><td class="munber"><a href="#">1130</a>&nbsp;次</td></tr>
-           <tr><td class="name">支付宝登陆：</td><td class="munber"><a href="#">1130</a>&nbsp;次</td></tr>
-           <tr><td class="name">QQ会员登陆：</td><td class="munber"><a href="#">1130</a>&nbsp;次</td></tr>
+           <tr><td class="name">销售订单个数：</td><td class="munber"><a href="#" class="salesnum"></a>&nbsp;次</td></tr>
+           <tr><td class="name">销售额：</td><td class="munber"><a href="#" class="salesprice"></a>&nbsp;元</td></tr>
+           
            </tbody>
           </table>
          </div> 
@@ -109,14 +103,8 @@
                <div id="main" style="height:300px; overflow:hidden; width:100%; overflow:auto" ></div>     
               </div> -->
          <div class="news_style">
-          <div class="title_name">员工信息</div>
-          <ul class="list">
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">6月共处理订单3451比，作废为...</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-          </ul>
+          <div class="title_name">员工公告</div>
+             <div>  放假通知：2020年5月1日劳动节，本超市员工放假一天（5月1日），望各部门负责人做好员工排班！</div>
          </div> 
          </div>
    
@@ -148,6 +136,17 @@ $('.no-radius').on('click', function(){
 		 $(".t_Record").width($(window).width()-640);
 		});
  });
-	 
+    $(function () {
+        var data = fnGetDataArryObj("v_Homeindex","1=1");
+        data = JSON.parse(data);
+        $("#vipnum").text(data[0].vipnum);
+        $("#ordernum").text(data[0].ordernum);
+        $(".salesprice").text(data[0].salesprice);
+        $(".salesnum").text(data[0].salesnum);
+        $("#commoditynum").text(data[0].commoditynum);
+        $("#commodityInvent").text(data[0].commodityInvent);
+
+       
+    })
 	 
  </script>   

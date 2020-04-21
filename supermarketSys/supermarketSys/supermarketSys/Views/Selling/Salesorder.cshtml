@@ -373,34 +373,37 @@
                 }
                 //结算
                 function Insertdata() {
-                    var count=0;
-                    for (var i = 0; i < viewObj.tbData.length; i++) {
-                        var salesdetail = {
+                    var count = 0;
+                    try {
+                        for (var i = 0; i < viewObj.tbData.length; i++) {
+                            var salesdetail = {
+                                "Salesorderno": $("#salesorderno").val(),
+                                "factorycode": viewObj.tbData[i].factorycode,
+                                "num": parseFloat(viewObj.tbData[i].num),
+                                "price": parseFloat(viewObj.tbData[i].price),
+                                "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price)),
+                                "pricestate": "销售"
+                            }
+                            fnInsertData("SalesformDetail", salesdetail);
+                            if (typeof salesdetail.sumprice === 'number' && isNaN(salesdetail.sumprice) != true) {
+                                count = count + salesdetail.sumprice;
+                            }
+                        }
+                        layer.msg('本次消费一共' + count + '元钱~', {
+                            time: 5000, //20s后自动关闭
+                            btn: ['确定']
+                        });
+                        var salesform = {
                             "Salesorderno": $("#salesorderno").val(),
-                            "factorycode": viewObj.tbData[i].factorycode,
-                            "num": parseFloat(viewObj.tbData[i].num),
-                            "price": parseFloat(viewObj.tbData[i].price),
-                            "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price)),
-                            "pricestate": "销售"
+                            "Salestime": $("#selltime").val(),
+                            "state": $("#state").val(),
+                            "vipcode": $("#Vipcode").val(),
+                            "sumprice": parseFloat(count)
                         }
-                        fnInsertData("SalesformDetail", salesdetail);
-                        if (typeof salesdetail.sumprice === 'number' && isNaN(salesdetail.sumprice) != true) {
-                            count = count + salesdetail.sumprice;
-                        }
-                    }
-                    layer.msg('本次消费一共' + count + '元钱~', {
-                        time: 5000, //20s后自动关闭
-                        btn: ['确定']
-                    });
-                    var salesform = {
-                        "Salesorderno": $("#salesorderno").val(),
-                        "Salestime": $("#selltime").val(),
-                        "state": $("#state").val(),
-                        "vipcode": $("#Vipcode").val(),
-                        "sumprice": parseFloat(count)
-                    }
-                    fnInsertData("Salesform", salesform);
-                    $("#total").attr("value",count)
+                        fnInsertData("Salesform", salesform);
+                        $("#total").attr("value", count)
+                    } catch{ alert("结算失败，检查销售明细") }
+                    
                 }
             </script>
         
