@@ -49,5 +49,17 @@ namespace supermarketSys.Controllers
             ViewBag.empcode = empcode;
             return View("~/Views/Checkingin/Checkin.cshtml");
         }
+        //供应商
+        public ActionResult Supplier()
+        {
+            return View("~/Views/Home/Supplier.cshtml");
+        }
+
+        //用户
+        public ActionResult Users()
+        {
+            return View("~/Views/Home/Users.cshtml");
+        }
+
     }
 }

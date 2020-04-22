@@ -137,6 +137,31 @@
                 }
             ]];
             break; 
+        case "Supplier":
+            cols = [[
+                { field: 'suppliercode', title: '编号', sort: true, }
+                , { field: 'name', title: '名称' }
+                , { field: 'place', title: '地址', sort: true }
+                , { field: 'person1', title: '负责人1' }
+                , { field: 'phone1', title: '电话1' }
+                , { field: 'person2', title: '负责人2' }
+                , { field: 'phone2', title: '电话2' }
+                , { fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo' }
+            ]];
+            break;
+
+        case "Users":
+            cols = [[
+                { field: 'code', title: '工号', sort: true, }
+                //, { field: 'name', title: '名称' }
+                //, { field: 'duty', title: '部门', sort: true }
+                , { field: 'password', title: '密码' }
+                , { field: 'port', title: '端口' }
+
+                , { fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo' }
+            ]];
+            break;
+
 
     }
     return cols;

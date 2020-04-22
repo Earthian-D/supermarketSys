@@ -1,0 +1,138 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Scripts/CSS/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
+    <link href="~/Scripts/CSS/assets/css/codemirror.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>新增供应商</title>
+</head>
+<body>
+    <div class="" id="add_picture">
+        <div class="">
+            
+            <form action="" method="post" class="form form-horizontal" id="form-article-add">
+                
+                <div class=" clearfix cl">
+
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">编号：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="suppliercode" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">名称：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="name" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">地址：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="place" name=""></div>
+                    </div>
+                   
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">负责人1：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="person1" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">手机号码1：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="phone1" name=""></div>
+                    </div>
+
+                    <br />
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">负责人2：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="person2" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">手机号码2：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="phone2" name=""></div>
+                    </div>
+                  
+
+                </div>
+                <div class="clearfix cl">
+                    <div class="Button_operation">
+                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>新增</button>
+                        <button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>修改</button>
+                        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <script type="text/javascript">
+     
+     $(function () {
+         //var data = fnGetDataArryObj("Commoditytype", "");
+         //var data1 = fnGetDataArryObj("Supplier", "");
+         //data = JSON.parse(data);
+         //data1 = JSON.parse(data1);
+         //for (var i = 0;i<data.length; i++) {
+         //    $("#typecode").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
+         //}
+         //for (var i = 0; i < data.length; i++) {
+         //    $("#suppliercode").append("<option value=" + data1[i].suppliercode + ">" + data1[i].name + "</option>");
+         //}
+     });
+     function layer_close() {
+         history.go(-1);
+     }
+     function article_save_submit() {
+         ////验证必填项是否为空
+         var suppliercode = $("#suppliercode").val();
+         var name = $("#name").val();
+         var phone1 = $("#phone1").val();
+         var phone2 = $("#phone2").val();
+         if (suppliercode == "") {
+             alert("供应商编码不能为空，请填写！");
+             return;
+         };
+         if (name == "") {
+             alert("供应商名称不能为空，请填写！")
+             return;
+         };
+     
+         if (phone1 == "" && phone2 == "") {
+             alert("手机号码至少填写一个！");
+             return false;
+         } 
+
+         var PriceData = {
+             factorycode: $("#factorycode").val(),
+             purchasingprice: parseFloat($("#purchasingprice").val()),
+             sellingprice: parseFloat($("#sellingprice").val()),
+             vipprice: parseFloat($("#vipprice").val()),
+             version: "1.0"
+         }
+         var SupplierData = {
+             suppliercode: $("#suppliercode").val(),
+             name: $("#name").val(),
+             place: $("#place").val(),
+             person1: $("#person1").val(),
+             phone1: $("#phone1").val(),
+             person2: $("#person2").val(),
+             phone2: $("#phone2").val(),
+         }
+        
+         var TypeData = {
+             factorycode: $("#factorycode").val(),
+             typecode: $("#typecode").val()
+         }
+         fnInsertData("Prices", PriceData);
+         fnInsertData("Type", TypeData);
+         var msg = fnInsertData("Supplier", SupplierData);
+         if (typeof (mag) == "undefined") alert("执行成功");
+         else alert("执行动作失败，请联系管理员")
+         
+     }
+ </script>
+
+</body>
+</html>

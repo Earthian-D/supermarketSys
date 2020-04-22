@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Scripts/CSS/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
+    <link href="~/Scripts/CSS/assets/css/codemirror.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>新增用户</title>
+</head>
+<body>
+    <div class="" id="add_picture">
+        <div class="">
+            
+            <form action="" method="post" class="form form-horizontal" id="form-article-add">
+                
+                <div class=" clearfix cl">
+
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">工号：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="code" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">密码：</label>
+                        <div class="formControls col-2"><input type="password" class="input-text" value="" placeholder="请输入密码" id="password" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">端口：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="port" name=""></div>
+                    </div>
+                   
+                   @* <div class="Add_p_s">
+                        <label class="form-label col-2">负责人1：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="person1" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">手机号码1：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="phone1" name=""></div>
+                    </div>
+
+                    <br />
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">负责人2：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="person2" name=""></div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">手机号码2：</label>
+                        <div class="formControls col-2"><input type="text" class="input-text" value="" placeholder="" id="phone2" name=""></div>
+                    </div>
+                  *@
+
+                </div>
+                <div class="clearfix cl">
+                    <div class="Button_operation">
+                        <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>新增</button>
+                        <button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>修改</button>
+                        <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+ <script type="text/javascript">
+     
+     $(function () {
+         //var data = fnGetDataArryObj("Commoditytype", "");
+         //var data1 = fnGetDataArryObj("Supplier", "");
+         //data = JSON.parse(data);
+         //data1 = JSON.parse(data1);
+         //for (var i = 0;i<data.length; i++) {
+         //    $("#typecode").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
+         //}
+         //for (var i = 0; i < data.length; i++) {
+         //    $("#suppliercode").append("<option value=" + data1[i].suppliercode + ">" + data1[i].name + "</option>");
+         //}
+     });
+     function layer_close() {
+         history.go(-1);
+     }
+     function article_save_submit() {
+         //验证必填项是否为空
+         var code = $("#code").val();
+        
+         if (code == "") {
+             alert("工号不能为空，请填写！");
+             return;
+         };
+       
+   
+
+         //var PriceData = {
+         //    factorycode: $("#factorycode").val(),
+         //    purchasingprice: parseFloat($("#purchasingprice").val()),
+         //    sellingprice: parseFloat($("#sellingprice").val()),
+         //    vipprice: parseFloat($("#vipprice").val()),
+         //    version: "1.0"
+         //}
+         var UsersData = {
+             code: $("#code").val(),
+             password: $("#password").val(),
+             port: $("#port").val(),
+           
+         }
+        
+        
+         //fnInsertData("Prices", PriceData);
+         //fnInsertData("Type", TypeData);
+         var msg = fnInsertData("Users", UsersData);
+         if (typeof (mag) == "undefined") alert("执行成功");
+         else alert("执行动作失败，请联系管理员")
+         
+     }
+ </script>
+
+</body>
+</html>

@@ -135,7 +135,9 @@
     <Compile Include="Controllers\OrderformController.cs" />
     <Compile Include="Controllers\SellingController.cs" />
     <Compile Include="Controllers\SQLtoDBController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TableController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VIPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1081,6 +1083,10 @@
     <Content Include="Views\Selling\Salesorder.cshtml" />
     <Content Include="Views\Selling\SalesorderList.cshtml" />
     <Content Include="Views\Checkingin\Checkin.cshtml" />
+    <Content Include="Views\Supplier\Supplier_Add.cshtml" />
+    <Content Include="Views\Users\Users_Add.cshtml" />
+    <Content Include="Views\Home\Supplier.cshtml" />
+    <Content Include="Views\Home\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />
