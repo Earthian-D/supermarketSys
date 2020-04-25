@@ -12,6 +12,9 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/ajaxSQL/toDB.js"></script>
     <title>订单管理</title>
+    <style>
+        
+    </style>
 </head>
 <body>
     <button type="button" class="layui-btn layui-btn-lg layui-btn-normal" style="margin-left:20px;top:20px" onclick="orderbox()">商品进货</button>
@@ -68,7 +71,7 @@
                             </div>
                         </div>
                         <div id="tableRes" class="table-overlay">
-                            <table id="dataTable" lay-filter="dataTable" class="layui-hide"></table>
+                            <table id="dataTable" lay-filter="dataTable" class="layui-hide" style="width:100%"></table>
                         </div>
                         <div id="action" class="text-center">
                             <button type="button" name="btnSave" class="layui-btn" data-type="save"><i class="layui-icon layui-icon-ok-circle"></i>保存</button>
@@ -91,6 +94,7 @@
                     for (var i = 0; i < data.length; i++) {
                         $("#suppliercode").append("<option value=" + data1[i].suppliercode + ">" + data1[i].name + "</option>");
                     }
+                    this.reload();
                 });
                 //准备视图对象
                 window.viewObj = {
@@ -101,26 +105,26 @@
                         price: '',
                         sumprice: '',
                     }],
-                    renderSelectOptions: function (data, settings) {
-                        settings = settings || {};
-                        var valueField = settings.valueField || 'value',
-                            textField = settings.textField || 'text',
-                            selectedValue = settings.selectedValue || "";
-                        var html = [];
-                        for (var i = 0, item; i < data.length; i++) {
-                            item = data[i];
-                            html.push('<option value="');
-                            html.push(item[valueField]);
-                            html.push('"');
-                            if (selectedValue && item[valueField] == selectedValue) {
-                                html.push(' selected="selected"');
-                            }
-                            html.push('>');
-                            html.push(item[textField]);
-                            html.push('</option>');
-                        }
-                        return html.join('');
-                    }
+                    //renderSelectOptions: function (data, settings) {
+                    //    settings = settings || {};
+                    //    var valueField = settings.valueField || 'value',
+                    //        textField = settings.textField || 'text',
+                    //        selectedValue = settings.selectedValue || "";
+                    //    var html = [];
+                    //    for (var i = 0, item; i < data.length; i++) {
+                    //        item = data[i];
+                    //        html.push('<option value="');
+                    //        html.push(item[valueField]);
+                    //        html.push('"');
+                    //        //if (selectedValue && item[valueField] == selectedValue) {
+                    //        //    html.push(' selected="selected"');
+                    //        //}
+                    //        html.push('>');
+                    //        html.push(item[textField]);
+                    //        html.push('</option>');
+                    //    }
+                    //    return html.join('');
+                    //}
                 };
 
                 //layui 模块化引用
@@ -130,6 +134,7 @@
                     //数据表格实例化
                     var tbWidth = $("#tableRes").width();
                     var layTableId = "layTable";
+                    
                     var tableIns = table.render({
                         elem: '#dataTable',
                         id: layTableId,
@@ -139,19 +144,19 @@
                         loading: true,
                         even: false, //不开启隔行背景
                         cols: [[
-                            { title: '序号', type: 'numbers' },
-                            { field: 'factorycode', title: '工厂码', edit: 'text' },
+                            //{ title: '序号', type: 'numbers' },
+                            { field: 'factorycode', title: '工厂码', edit: 'text',width:150 },
                             {
-                                field: 'name', title: '商品名称', edit: 'text', templet: function (d) {
+                                field: 'name', title: '商品名称', edit: 'text', width: 150, templet: function (d) {
                                     if (d.factorycode == undefined || d.factorycode == "") return null;
                                     else return GetName(d);
                                 }
                             },
-                            { field: 'num', title: '数量', edit: 'text' },
-                            { field: 'price', title: '进货单价', edit: 'text' },
-                            { field: 'sumprice', title: '总额', edit: 'text', templet: function (d) { return d.num * d.price } },
+                            { field: 'num', title: '数量', edit: 'text', width: 100 },
+                            { field: 'price', title: '进货单价', edit: 'text', width: 100},
+                            { field: 'sumprice', title: '总额', edit: 'text', width: 100, templet: function (d) { return d.num * d.price } },
                             {
-                                field: 'tempId', title: '操作', templet: function (d) {
+                                field: 'tempId', title: '操作', width: 150, templet: function (d) {
                                     return '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" lay-id="' + d.tempId + '"><i class="layui-icon layui-icon-delete"></i>移除</a>';
                                 }
                             }

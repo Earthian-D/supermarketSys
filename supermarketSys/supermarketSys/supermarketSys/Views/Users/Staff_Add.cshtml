@@ -1,0 +1,129 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Scripts/CSS/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/CSS/css/style.css" />
+    <link href="~/Scripts/CSS/assets/css/codemirror.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/CSS/assets/css/font-awesome.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/ajaxSQL/toDB.js"></script>
+    <title>新增职员</title>
+</head>
+<body>
+    <div class="" id="add_picture">
+        <div class="">
+
+            <form action="" method="post" class="form form-horizontal" id="form-article-add">
+
+                <div class=" clearfix cl">
+
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">工号：</label>
+                        <div class="formControls col-2">
+                            <input type="text" class="input-text" value="" placeholder="" id="code" name="">
+                        </div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">姓名：</label>
+                        <div class="formControls col-2">
+                            <input type="text" class="input-text" value="" placeholder="" id="name" name="">
+                        </div>
+                    </div>
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">部门：</label>
+                        <div class="formControls col-2">
+                            <select id="duty">
+                                <option value="">请选择...</option>
+                                <option value="人事部">人事部</option>
+                                <option value="商品部">商品部</option>
+                                <option value="营业部">营业部</option>
+                                <option value="技术部">技术部</option>
+                                <option value="服务部">服务部</option>
+                                <option value="安保部">安保部</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="Add_p_s">
+                        <label class="form-label col-2">岗位：</label>
+                        <div class="formControls col-2">
+                            <select id="dept">
+                                <option value="">请选择...</option>
+                                <option value="总经理">总经理</option>
+                                <option value="财务经理">财务经理</option>
+                                <option value="财务员">财务员</option>
+                                <option value="出纳">出纳</option>
+                                <option value="会计">会计</option>
+                                <option value="采购组长">采购组长</option>
+                                <option value="采购员">采购员</option>
+                                <option value="录入员">录入员</option>
+                                <option value="防损员">防损员</option>
+                                <option value="理货员">理货员</option>
+                                <option value="收银员">收银员</option>
+                                <option value="保安">保安</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix cl">
+                    <div class="Button_operation">
+                        <button onclick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>新增</button>
+                        <button onclick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+           
+        });
+        function layer_close() {
+            history.go(-1);
+        }
+        function article_save_submit() {
+            ////验证必填项是否为空
+            var code = $("#code").val();
+            var name = $("#name").val();
+            var duty = $("#duty").val();
+            var dept = $("#dept").val();
+            if (code == "") {
+                alert("工号不能为空，请填写！");
+                return;
+            };
+            if (name == "") {
+                alert("姓名不能为空，请填写！")
+                return;
+            };
+            if (duty == "") {
+                alert("部门不能为空，请填写！")
+                return;
+            };
+            
+            var StaffData = {
+                code: $("#code").val(),
+                name: $("#name").val(),
+                duty: $("#duty").val(),
+                dept: $("#dept").val(),
+
+            }
+
+
+            var msg = fnInsertData("Staff", StaffData);
+            if (typeof (msg) == "undefined") alert("执行成功");
+            else alert("执行动作失败，请联系管理员")
+
+        }
+    </script>
+
+</body>
+</html>

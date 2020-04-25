@@ -60,6 +60,11 @@ namespace supermarketSys.Controllers
         {
             return View("~/Views/Home/Users.cshtml");
         }
+        //用户
+        public ActionResult Staff()
+        {
+            return View("~/Views/Home/Staff.cshtml");
+        }
 
     }
 }

@@ -162,6 +162,27 @@
             ]];
             break;
 
+        case "Staff":
+            cols = [[
+                { field: 'code', title: '工号', sort: true, }
+                , { field: 'name', title: '姓名' }
+                , { field: 'duty', title: '部门', sort: true }
+
+                , { field: 'dept', title: '岗位', sort: true }
+                , { fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo' }
+            ]];
+            break;
+
+        case "Viptable":
+            cols = [[
+                { field: 'vipcode', title: '会员号', sort: true, }
+                , { field: 'name', title: '姓名' }
+                , { field: 'phone', title: '电话', sort: true }
+
+                , { field: 'integral', title: '类型', sort: true }
+                , { fixed: 'right', title: '操作', align: 'center', toolbar: '#barDemo' }
+            ]];
+            break;
 
     }
     return cols;

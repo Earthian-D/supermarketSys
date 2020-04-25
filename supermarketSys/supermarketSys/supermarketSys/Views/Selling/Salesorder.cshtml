@@ -99,7 +99,6 @@
                     var selldata = fnGetDataArryObj("Salesform", "Salesorderno like '%" + timedata + "%' and state='销售'")
                     if (selldata.length > 10) {
                         selldata = JSON.parse(selldata);
-                        console.log(selldata.length)
                         salesorderno = timedata + fn1((selldata.length + 1).toString())
                         $("#salesorderno").attr("value", salesorderno);
                         $("#selltime").attr("value", selltime);
@@ -247,16 +246,7 @@
 
                             if (typeof (msg) == "undefined") alert("执行成功");
                             else alert("执行动作失败，请联系管理员")
-                        //    var oldData = table.cache[layTableId];
-                        //    for (var i = 0, row; i < oldData.length; i++) {
-                        //        row = oldData[i];
-                        //        //if (!row.type) {
-                        //        //    layer.msg("表格不能为空", { icon: 5 }); //提示
-                        //        //    return;
-                        //        //}
-                        //    }
-                        //    document.getElementById("jsonResult").innerHtml = JSON.stringify(table.cache[layTableId], null, 2);	//使用JSON.stringify() 格式化输出JSON字符串
-                        }
+                      }
                     }
                     function insertdetail() {
                         for (var i = 0; i < viewObj.tbData.length; i++) {

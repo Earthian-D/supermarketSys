@@ -13,9 +13,5 @@ namespace supermarketSys.Controllers
         {
             return View("~/Views/VIP/user_list.cshtml");
         }
-        public ActionResult MemberLevel()
-        {
-            return View("~/Views/VIP/member_level.cshtml");
-        }
     }
 }

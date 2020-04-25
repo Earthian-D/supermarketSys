@@ -10,8 +10,12 @@ namespace supermarketSys.Controllers
     {
 
         public ActionResult Users_Add()
-        {
+        {//添加权限
             return View("~/Views/Users/Users_Add.cshtml");
+        }
+        public ActionResult Staff_Add()
+        {//添加员工
+            return View("~/Views/Users/Staff_Add.cshtml");
         }
     }
 }

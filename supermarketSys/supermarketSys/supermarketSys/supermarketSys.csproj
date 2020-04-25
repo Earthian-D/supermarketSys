@@ -1077,8 +1077,6 @@
     <Content Include="Views\Inventory\Inventory.cshtml" />
     <Content Include="Views\Inventory\InventoryDetail.cshtml" />
     <Content Include="Views\Admin\admin.cshtml" />
-    <Content Include="Views\VIP\user_list.cshtml" />
-    <Content Include="Views\VIP\member_level.cshtml" />
     <Content Include="Views\Home\HomeWeb.cshtml" />
     <Content Include="Views\Selling\Salesorder.cshtml" />
     <Content Include="Views\Selling\SalesorderList.cshtml" />
@@ -1087,6 +1085,9 @@
     <Content Include="Views\Users\Users_Add.cshtml" />
     <Content Include="Views\Home\Supplier.cshtml" />
     <Content Include="Views\Home\Users.cshtml" />
+    <Content Include="Views\Users\Staff_Add.cshtml" />
+    <Content Include="Views\Home\Staff.cshtml" />
+    <Content Include="Views\VIP\user_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\bootstrap-table-master\index.d.ts" />
