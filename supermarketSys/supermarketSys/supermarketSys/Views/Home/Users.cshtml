@@ -142,7 +142,8 @@ function showCode(str) {
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
     function search() {
-        var condition = "code like '" + $("#supplierinfo").val() + "%'";
+        var condition = "code like '%" + $("#supplierinfo").val() + "%'";
+        
         $("#iframe").attr("src", "/Table/Table?name=Users&code=" + condition);
       
     }

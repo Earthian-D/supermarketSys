@@ -172,7 +172,7 @@
                     icon: 2,
                 },
                     function () {
-                        location.href = "login.html";
+                        location.href = "/Home/Index";
 
                     });
             });
@@ -214,8 +214,8 @@
                             <i class="icon-caret-down"></i>
                         </a>
                         <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li>
-                            <li><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
+                            @*<li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li>
+                            <li><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>*@
                             <li class="divider"></li>
                             <li><a href="javascript:ovid(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
                         </ul>
@@ -294,22 +294,30 @@
                             <ul class="submenu">
                                 <li class="home"><a href="javascript:void(0)" name="/Inventory/Index" title="现有库存" class="iframeurl"><i class="icon-double-angle-right"></i>现有库存</a></li>
                                 <li class="home"><a href="javascript:void(0)" name="/Inventory/Inventory" title="库存明细" class="iframeurl"><i class="icon-double-angle-right"></i>库存明细</a></li>
-                             </ul>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle"><i class="icon-user"></i><span class="menu-text"> 会员管理 </span><b class="arrow icon-angle-down"></b></a>
+                            <ul class="submenu">
+                                <li class="home"><a href="javascript:void(0)" name="/VIP/Index" title="会员列表" class="iframeurl"><i class="icon-double-angle-right"></i>会员列表</a></li>
+                                @*<li class="home"><a href="javascript:void(0)" name="integration.html" title="会员记录管理" class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li>*@
+
+                            </ul>
                         </li>
                         <li>
                             <a href="#" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 职员管理 </span><b class="arrow icon-angle-down"></b></a>
                             <ul class="submenu">
                                 <li class="home"><a href="javascript:void(0)" name="/Home/Staff" title="职员信息" class="iframeurl"><i class="icon-double-angle-right"></i>添加职员</a></li>
-                                 </ul>
+                            </ul>
                         </li>
-                        
-                            <li id="power">
-                                <a href="#" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a>
-                                <ul class="submenu">
-                                     <li class="home"><a href="javascript:void(0)" name="/Home/Users" title="添加权限" class="iframeurl"><i class="icon-double-angle-right"></i>添加权限</a></li>
-                                </ul>
-                            </li>
-                        
+
+                        <li id="power">
+                            <a href="#" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a>
+                            <ul class="submenu">
+                                <li class="home"><a href="javascript:void(0)" name="/Home/Users" title="添加权限" class="iframeurl"><i class="icon-double-angle-right"></i>添加权限</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
                 <script type="text/javascript">

@@ -105,26 +105,7 @@
                         price: '',
                         sumprice: '',
                     }],
-                    //renderSelectOptions: function (data, settings) {
-                    //    settings = settings || {};
-                    //    var valueField = settings.valueField || 'value',
-                    //        textField = settings.textField || 'text',
-                    //        selectedValue = settings.selectedValue || "";
-                    //    var html = [];
-                    //    for (var i = 0, item; i < data.length; i++) {
-                    //        item = data[i];
-                    //        html.push('<option value="');
-                    //        html.push(item[valueField]);
-                    //        html.push('"');
-                    //        //if (selectedValue && item[valueField] == selectedValue) {
-                    //        //    html.push(' selected="selected"');
-                    //        //}
-                    //        html.push('>');
-                    //        html.push(item[textField]);
-                    //        html.push('</option>');
-                    //    }
-                    //    return html.join('');
-                    //}
+                 
                 };
 
                 //layui 模块化引用
@@ -197,13 +178,7 @@
                             });
                         },
                         removeEmptyTableCache: function () {
-                            //var oldData = table.cache[layTableId];
-                            //for (var i = 0, row; i < oldData.length; i++) {
-                            //    row = oldData[i];
-                            //    if (!row || !row.tempId) {
-                            //        oldData.splice(i, 1);    //删除一项
-                            //    }
-                            //    continue;
+                           
                                 var oldData = table.cache[layTableId];
                                 for (var i = 0, row; i < oldData.length; i++) {
                                     row = oldData[i];
@@ -225,7 +200,10 @@
                                 "checktime": $("#checktime").val(),
                                 "state": $("#state").val(),
                             }
+                            var data = fnGetDataArryObj("Orderform", "orderno='" + order.orderno + "'");
+                            if (data.length>5) { alert("订单号重复！请检查"); return; }
                             if (order.orderno == "" || order.suppliercode == "" || order.total == "" || order.checktime == "" || order.state == "") alert("表单不能为空，请填写正确")
+
                             else {
                                 var msg = fnInsertData("Orderform", order);
                                 insertdetail();

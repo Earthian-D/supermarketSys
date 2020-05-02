@@ -86,25 +86,6 @@
             $('.link_cz > li').removeClass('active');
             $(this).addClass('active');
         });
-        /*******************/
-        //jQuery( document).ready(function(){
-        //	  $("#submit").click(function(){
-        //	// var num=0;
-        //     var str="";
-        //     $("input[type$='password']").each(function(n){
-        //          if($(this).val()=="")
-        //          {
-        //              // num++;
-        //			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-        //                title: '提示框',
-        //				icon:0,
-        //          });
-        //             // layer.msg(str+=""+$(this).attr("name")+"不能为空！\r\n");
-        //             layer.close(index);
-        //          }
-        //     });
-        //})
-        //	});
 
         /*********************点击事件*********************/
         $(document).ready(function () {
@@ -184,7 +165,7 @@
                     icon: 2,
                 },
                     function () {
-                        location.href = "login.html";
+                        location.href = "/Home/Index";
 
                     });
             });
@@ -226,8 +207,8 @@
                             <i class="icon-caret-down"></i>
                         </a>
                         <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                            <li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li>
-                            <li><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
+                            @*<li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li>
+                            <li><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>*@
                             <li class="divider"></li>
                             <li><a href="javascript:ovid(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
                         </ul>
@@ -293,14 +274,7 @@
                                 <li class="home"><a href="javascript:void(0)" name="/Home/Checkingin" title="考勤打卡" class="iframeurl"><i class="icon-double-angle-right"></i>考勤打卡</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-toggle"><i class="icon-user"></i><span class="menu-text"> 会员管理 </span><b class="arrow icon-angle-down"></b></a>
-                            <ul class="submenu">
-                                <li class="home"><a href="javascript:void(0)" name="/VIP/Index" title="会员列表" class="iframeurl"><i class="icon-double-angle-right"></i>会员列表</a></li>
-                                @*<li class="home"><a href="javascript:void(0)" name="integration.html" title="会员记录管理" class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li>*@
-
-                            </ul>
-                        </li>
+                        
                     </ul>
                 </div>
                 <script type="text/javascript">

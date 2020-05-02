@@ -25,12 +25,12 @@
 
                     <div class=" clearfix cl">
 
-                        <div class="Add_p_s">
+                        @*<div class="Add_p_s">
                             <label class="form-label col-2">会员号：</label>
                             <div class="formControls col-2">
                                 <input type="text" class="input-text" value="" placeholder="" id="vipcode" name="" readonly>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="Add_p_s">
                             <label class="form-label col-2">姓名：</label>
                             <div class="formControls col-2">
@@ -86,7 +86,7 @@
                 return;
             }
             var data = {
-                "vipcode": $("#vipcode").val(),
+                "vipcode": null,
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "integral": $("#integral").val()
