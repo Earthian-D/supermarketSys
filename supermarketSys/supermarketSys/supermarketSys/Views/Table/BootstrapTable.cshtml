@@ -35,7 +35,7 @@
             <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
-        <script src="~/Scripts/layui-v2.5.6/layui/layui.js" charset="utf-8"></script>
+        <script src="~/Scripts/layui-v2.5.6/layui/layui.all.js" charset="utf-8"></script>
     <script src="~/Scripts/ajaxSQL/Tablecols.js"></script>
         <script>
         var tablename = "@ViewBag.name"
@@ -43,12 +43,20 @@
         layui.use('table', function () {
             var table = layui.table;
             //第一个实例
-            var tableIns=table.render({
+            table.render({
                 elem: '#demo'
                 , height: 500
                 , url: '/Table/GetJson' //数据接口
+                , method: 'post'
+                , cols: cols,
+                request: {
+                    pageName: 'page' // 页码的参数名称，默认：page
+                    , limitName: 'limit' //每页数据量的参数名，默认：limit
+                },
+                text: {
+                    none: '暂无相关数据' 
+                }
                 , page: true //开启分页
-                , cols: cols
             });
             //监听事件,填写lay-filter才能调度
             table.on('tool(test)', function (obj) {

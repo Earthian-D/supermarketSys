@@ -26,15 +26,22 @@ namespace supermarketSys.Controllers
         }
         public string GetJson()
         {
-            string sql = "select * from " + tablename+" where "+codes;
-            DataTable tb = new DBHelper().GetDataTableBySql(sql);
-            return DataTableToJson(tb);
+            int Page = Convert.ToInt32(Request.Params["page"]);
+            int Limit = Convert.ToInt32(Request.Params["limit"]);
+
+            // string sql = "select top "+Convert.ToInt32(Page) * Convert.ToInt32(Limit)+"* from " + tablename+" where "+codes;
+            string sql1="select * from " + tablename + " where " + codes;
+           // DataTable tb = new DBHelper().GetDataTableBySql(sql);
+            DataTable tb1 = new DBHelper().GetDataTableBySql(sql1);
+            return DataTableToJson(tb1,Page,Limit);
         }
-        public static string DataTableToJson(DataTable dt)
+        public static string DataTableToJson(DataTable dt, int Page,int Limit)
         {
             StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append("{\"code\":0,\"msg\":\"\",\"count\":1000,\"data\":[");
-            for (int i = 0; i < dt.Rows.Count; i++)
+            jsonBuilder.Append("{\"code\":0,\"msg\":\"\",\"count\":"+ dt.Rows.Count + ",\"data\":[");
+            int num = Page - 1;
+            int End = (Page * Limit)> dt.Rows.Count ? dt.Rows.Count : (Page * Limit);
+            for (int i = num*Limit; i < End; i++)
             {
                 jsonBuilder.Append("{");
                 for (int j = 0; j < dt.Columns.Count; j++)
