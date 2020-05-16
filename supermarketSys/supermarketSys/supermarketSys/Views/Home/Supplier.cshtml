@@ -141,7 +141,7 @@ function showCode(str) {
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
     function search() {
-        var condition = "name like '%" + $("#supplierinfo").val() + "%'";
+        var condition = "name like '%25" + $("#supplierinfo").val() + "%'";
         console.log(condition)
         $("#iframe").attr("src", "/Table/Table?name=Supplier&code=" + condition);
       

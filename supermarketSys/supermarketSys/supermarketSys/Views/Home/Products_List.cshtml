@@ -157,7 +157,7 @@ function showCode(str) {
         zTree.selectNode(zTree.getNodeByParam("id", '11'));
     });
     function Select() {
-        var condition = "name like '%" + $("#text").val() + "%'"
+        var condition = "name like '%25" + $("#text").val() + "%'"
         console.log(condition)
         // $("#iframe").attr("src", "/Table/Table?name=v_InventoryDetail&code=factorycode=" + condition)
         $("#iframe").attr("src", "/Table/Table?name=Commodity&code=" + condition);
