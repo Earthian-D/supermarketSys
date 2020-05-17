@@ -94,7 +94,6 @@
                 <div class="clearfix cl">
                     <div class="Button_operation">
                         <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="icon-save "></i>新增商品</button>
-                        <button onClick="article_save();" class="btn btn-secondary  btn-warning" type="button"><i class="icon-save"></i>修改商品</button>
                         <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
                     </div>
                 </div>
@@ -118,6 +117,11 @@
          history.go(-1);
      }
      function article_save_submit() {
+         var data = fnGetDataArryObj("Commodity", "factorycode='" + $("#factorycode").val() + "'");
+         if (data != "]") {
+             alert("该工厂码商品已存在，不能添加重复商品信息！")
+             return;
+         }
          var PriceData = {
              factorycode: $("#factorycode").val(),
              purchasingprice: parseFloat($("#purchasingprice").val()),

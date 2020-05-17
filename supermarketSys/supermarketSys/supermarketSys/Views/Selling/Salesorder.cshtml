@@ -100,11 +100,11 @@
                     if (selldata.length > 10) {
                         selldata = JSON.parse(selldata);
                         salesorderno = timedata + fn1((selldata.length + 1).toString())
+                        
                         $("#salesorderno").attr("value", salesorderno);
                         $("#selltime").attr("value", selltime);
                     }
                     else {
-                        console.log(selldata.length)
                         salesorderno = timedata + "0001";
                         $("#salesorderno").attr("value", salesorderno);
                         $("#selltime").attr("value", selltime);
@@ -153,22 +153,24 @@
                         id: layTableId,
                         data: viewObj.tbData,
                         width: tbWidth,
-                        page: true,
+                        limit:100,
                         loading: true,
                         even: false, //不开启隔行背景
                         cols: [[
                             //{ title: '序号', type: 'numbers' },
-                            { field: 'factorycode', title: '工厂码', edit: 'text' },
                             {
-                                field: 'name', title: '商品名称', edit: 'text', templet: function (d) {
-                                    if (d.factorycode == undefined || d.factorycode == "") return null;
+                                field: 'factorycode', title: '工厂码', edit: 'text'
+                            },
+                            {
+                                field: 'name', title: '商品名称', edit: 'text',templet: function (d) {
+                                    if (d.factorycode == undefined || d.factorycode == "") return "";
                                     else return GetName(d);
                                 }
                             },
                             { field: 'num', title: '数量', edit: 'text' },
                             {
                                 field: 'price', title: '售价', edit: 'text', templet: function (d) {
-                                    if (d.factorycode == undefined || d.factorycode == "") return null;
+                                    if (d.factorycode == undefined || d.factorycode == "") return "";
                                     else return Getprice(d);
                                 }
                             },
@@ -189,7 +191,7 @@
 
                         }
                     });
-
+                   
                     //定义事件集合
                     var active = {
                         addRow: function () {	//添加一行
@@ -234,40 +236,29 @@
                             });
                         },
                         save: function () {
-                            var order = {
-                                "orderno": $("#orderno").val(),
-                                "suppliercode": $("#suppliercode").val(),
-                                "total": parseFloat($("#total").val()),
-                                "checktime": $("#checktime").val(),
-                                "state": $("#state").val(),
-                            }
-                            var msg = fnInsertData("Orderform", order);
-                            insertdetail();
+                            //var order = {
+                            //    "orderno": $("#orderno").val(),
+                            //    "suppliercode": $("#suppliercode").val(),
+                            //    "total": parseFloat($("#total").val()),
+                            //    "checktime": $("#checktime").val(),
+                            //    "state": $("#state").val(),
+                            //}
+                            //var msg = fnInsertData("Orderform", order);
+                            //insertdetail();
 
-                            if (typeof (msg) == "undefined") alert("执行成功");
-                            else alert("执行动作失败，请联系管理员")
+                            //if (typeof (msg) == "undefined") alert("执行成功");
+                            //else alert("执行动作失败，请联系管理员")
                       }
-                    }
-                    function insertdetail() {
-                        for (var i = 0; i < viewObj.tbData.length; i++) {
-                          var  orderdetail = {
-                                "orderno": $("#orderno").val(),
-                                "factorycode": viewObj.tbData[i].factorycode,
-                              "num": parseFloat(viewObj.tbData[i].num),
-                              "price": parseFloat(viewObj.tbData[i].price),
-                              "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price))
-
-                            }
-
-                            fnInsertData("OrderformDetail", orderdetail)
-
-                        }
                     }
                     function GetName(d) {
                         var data = fnGetDataArryObj("Commodity", "factorycode='" + d.factorycode + "'");
-                        data = JSON.parse(data);
-                        d.name = data[0].name;
-                        return data[0].name;
+                        try {
+                            data = JSON.parse(data);
+                            d.name = data[0].name;
+                            return data[0].name;
+                        }
+                        catch{ alert("没有找到符合的商品，检查工厂码！") }
+                        
                     }
                     function Getprice(d) {
                         var tab = $("#Vipcode").val() == "" ? true : false;
@@ -275,7 +266,7 @@
                             var data = fnGetDataArryObj("Prices", "factorycode='" + d.factorycode + "'");
                             data = JSON.parse(data);
                             d.price = data[0].sellingprice;
-                            return data[0].sellingprice;
+                            return d.price;
                         }
                         else if (tab == false) {//vip售价
                             var data = fnGetDataArryObj("Prices", "factorycode='" + d.factorycode + "'");
@@ -284,6 +275,7 @@
                             return data[0].vipprice;
                         }
                     }
+                    
                     //激活事件
                     var activeByType = function (type, arg) {
                         if (arguments.length === 2) {
@@ -365,33 +357,63 @@
                 function Insertdata() {
                     var count = 0;
                     try {
-                        for (var i = 0; i < viewObj.tbData.length; i++) {
-                            var salesdetail = {
-                                "Salesorderno": $("#salesorderno").val(),
-                                "factorycode": viewObj.tbData[i].factorycode,
-                                "num": parseFloat(viewObj.tbData[i].num),
-                                "price": parseFloat(viewObj.tbData[i].price),
-                                "sumprice": parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price)),
-                                "pricestate": "销售"
-                            }
-                            fnInsertData("SalesformDetail", salesdetail);
-                            if (typeof salesdetail.sumprice === 'number' && isNaN(salesdetail.sumprice) != true) {
-                                count = count + salesdetail.sumprice;
+                        var flag = new Array();
+                        for (var x = 0; x < viewObj.tbData.length; x++) {
+                            for (var y = x + 1; y < viewObj.tbData.length ; y++) {
+                                if (viewObj.tbData[x].factorycode == viewObj.tbData[y].factorycode) {
+                                    flag[x] = 0;
+                                }
+                                else flag[x] = 1;
+
                             }
                         }
-                        layer.msg('本次消费一共' + count + '元钱~', {
-                            time: 5000, //20s后自动关闭
-                            btn: ['确定']
-                        });
-                        var salesform = {
-                            "Salesorderno": $("#salesorderno").val(),
-                            "Salestime": $("#selltime").val(),
-                            "state": $("#state").val(),
-                            "vipcode": $("#Vipcode").val(),
-                            "sumprice": parseFloat(count)
+                        if (flag.indexOf(0)==-1){
+                            for (var i = 0; i < viewObj.tbData.length; i++) {
+                                var ch = new Array(1,1,1,1);
+                                var salesdetail = {
+                                    "Salesorderno": $("#salesorderno").val(),
+                                    "factorycode": viewObj.tbData[i].factorycode == "" ? (ch[0] = 0) : viewObj.tbData[i].factorycode,
+                                    "num": isNaN(parseFloat(viewObj.tbData[i].num)) == true ? (ch[1] = 0) : parseFloat(viewObj.tbData[i].num),
+                                    "price": isNaN(parseFloat(viewObj.tbData[i].price)) == true ? (ch[2] = 0): parseFloat(viewObj.tbData[i].price),
+                                    "sumprice": isNaN(parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price))) == true ? (ch[3] = 0) : parseFloat(parseFloat(viewObj.tbData[i].num) * parseFloat(viewObj.tbData[i].price)),
+                                    "pricestate": "销售"
+                                }
+                                if (ch.indexOf(0) == -1) {
+                                    fnInsertData("SalesformDetail", salesdetail);
+                                    var data = {
+                                        "fid":null,
+                                        "factorycode": salesdetail.factorycode,
+                                        "num": salesdetail.num,
+                                        "state": "销售"
+                                    }
+                                    fnInsertData("Inventorydetail", data)
+                                    if (typeof salesdetail.sumprice === 'number' && isNaN(salesdetail.sumprice) != true) {
+                                        count = count + salesdetail.sumprice;
+                                    }
+                                    
+                                    var salesform = {
+                                        "Salesorderno": $("#salesorderno").val(),
+                                        "Salestime": $("#selltime").val(),
+                                        "state": $("#state").val(),
+                                        "vipcode": $("#Vipcode").val(),
+                                        "sumprice": parseFloat(count)
+                                    }
+                                    fnInsertData("Salesform", salesform);
+                                    $("#total").attr("value", count);
+                                    layer.msg('本次消费一共' + count + '元钱~', {
+                                        time: 5000, //20s后自动关闭
+                                        btn: ['确定']
+                                    });
+                                }
+                                else {
+                                    alert("明细不能存在重复商品信息，请检查"); return;
+                                }
+                            }
+                            
                         }
-                        fnInsertData("Salesform", salesform);
-                        $("#total").attr("value", count)
+                        else{
+                            alert("结算失败，检查销售明细,存在相同商品明细");
+                        }
                     } catch{ alert("结算失败，检查销售明细") }
                     
                 }

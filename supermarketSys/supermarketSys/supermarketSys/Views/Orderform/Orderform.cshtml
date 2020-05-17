@@ -129,7 +129,7 @@
                             { field: 'factorycode', title: '工厂码', edit: 'text',width:150 },
                             {
                                 field: 'name', title: '商品名称', edit: 'text', width: 150, templet: function (d) {
-                                    if (d.factorycode == undefined || d.factorycode == "") return null;
+                                    if (d.factorycode == undefined || d.factorycode == "") return "";
                                     else return GetName(d);
                                 }
                             },
@@ -227,6 +227,15 @@
                             if (orderdetail.orderno == "") alert("第"+(i+1)+"明细数据有误，请仔细检查")
                             else {
                                 fnInsertData("OrderformDetail", orderdetail)
+                                var data = {
+                                    "fid": null,
+                                    "factorycode": orderdetail.factorycode,
+                                    "num": orderdetail.num,
+                                    "state": "进货"
+                                    
+                                }
+                                console.log(data)
+                                fnInsertData("Inventorydetail", data)
                             }
                             
                             
@@ -234,8 +243,12 @@
                     }
                     function GetName(d) {
                         var data = fnGetDataArryObj("Commodity", "factorycode='" + d.factorycode + "'");
-                        data = JSON.parse(data);
-                        return data[0].name;
+                        try {
+                            data = JSON.parse(data);
+                            d.name = data[0].name;
+                            return data[0].name;
+                        }
+                        catch{ alert("没有找到符合的商品，检查工厂码！") }
                     }
                     //激活事件
                     var activeByType = function (type, arg) {

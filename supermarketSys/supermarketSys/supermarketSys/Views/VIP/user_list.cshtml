@@ -25,12 +25,12 @@
 
                     <div class=" clearfix cl">
 
-                        @*<div class="Add_p_s">
+                        <div class="Add_p_s"  style="display:none">
                             <label class="form-label col-2">会员号：</label>
                             <div class="formControls col-2">
                                 <input type="text" class="input-text" value="" placeholder="" id="vipcode" name="" readonly>
                             </div>
-                        </div>*@
+                        </div>
                         <div class="Add_p_s">
                             <label class="form-label col-2">姓名：</label>
                             <div class="formControls col-2">
@@ -71,12 +71,15 @@
         <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;height:100%" name="iframe" frameborder="0" src="/Table/Table?name=Viptable">  </iframe>
     </div>
     <script type="text/javascript">
-        $(function () {
-            var data = fnGetDataArryObj("Viptable","1=1");
-            data = JSON.parse(data);
-            $("#vipcode").val(data.length+1);
-        })
         function article_save_submit() {
+            var data = fnGetDataArryObj("Viptable", "1=1");
+            if (data != "]") {
+                data = JSON.parse(data);
+                $("#vipcode").val(data.length + 1);
+            }
+            else {
+                $("#vipcode").val("1");
+            }
             if ($("#name").val() == "") {
                 alert("姓名不能为空");
                 return;
@@ -86,7 +89,7 @@
                 return;
             }
             var data = {
-                "vipcode": null,
+                "vipcode": $("#vipcode").val(),
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "integral": $("#integral").val()

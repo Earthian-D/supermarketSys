@@ -73,10 +73,7 @@
             break; 
         case "v_InventoryDetail":
             cols = [[
-                {
-                    field: 'orderno', title: '订单号', sort: true, fixed: 'left'
-                }
-                , {
+               {
                     field: 'factorycode', title: '工厂码'
                 }
                 , {
@@ -87,6 +84,9 @@
                 }
                 , {
                     field: 'state', title: '类型',
+                }
+                , {
+                    field: 'treatmentdate', title: '操作时间',
                 }
             ]];
             break; 

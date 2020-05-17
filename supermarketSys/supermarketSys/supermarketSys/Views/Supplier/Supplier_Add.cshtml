@@ -70,26 +70,23 @@
  <script type="text/javascript">
      
      $(function () {
-         //var data = fnGetDataArryObj("Commoditytype", "");
-         //var data1 = fnGetDataArryObj("Supplier", "");
-         //data = JSON.parse(data);
-         //data1 = JSON.parse(data1);
-         //for (var i = 0;i<data.length; i++) {
-         //    $("#typecode").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
-         //}
-         //for (var i = 0; i < data.length; i++) {
-         //    $("#suppliercode").append("<option value=" + data1[i].suppliercode + ">" + data1[i].name + "</option>");
-         //}
+         
      });
      function layer_close() {
          history.go(-1);
      }
      function article_save_submit() {
          ////验证必填项是否为空
+         
          var suppliercode = $("#suppliercode").val();
          var name = $("#name").val();
          var phone1 = $("#phone1").val();
          var phone2 = $("#phone2").val();
+         var data = fnGetDataArryObj("Supplier", "suppliercode='" + $("#suppliercode").val() + "'");
+         if (data != "]") {
+             alert("该供应商编号已存在，不能添加重复信息！")
+             return;
+         }
          if (suppliercode == "") {
              alert("供应商编码不能为空，请填写！");
              return;
