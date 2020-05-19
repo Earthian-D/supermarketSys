@@ -89,7 +89,7 @@
                 return;
             }
             var data = {
-                "vipcode": $("#vipcode").val(),
+                "fid": NewGuid(),
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "integral": $("#integral").val()
@@ -109,6 +109,12 @@
                 $("#iframe").attr("src", "/Table/Table?name=Viptable&code=" + condition)
             }
             
+        }
+        function S4() {
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        }
+        function NewGuid() {
+            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
         }
     </script>
 </body>

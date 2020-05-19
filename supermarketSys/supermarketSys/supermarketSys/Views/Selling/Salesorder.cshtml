@@ -336,8 +336,8 @@
                     if (data.length > 2) {
                         data = JSON.parse(data);
                         $("#vipname").attr("value", data[0].name)
-                        $("#vipcode").attr("value", data[0].vipcode)
-                        $("#Vipcode").attr("value", data[0].vipcode)
+                        $("#vipcode").attr("value", data[0].name)
+                        $("#Vipcode").attr("value", data[0].name)
                     }
                     else layer.msg("该手机号没有注册会员！")
                 }

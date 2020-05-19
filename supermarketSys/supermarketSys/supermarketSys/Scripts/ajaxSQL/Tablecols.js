@@ -175,7 +175,7 @@
 
         case "Viptable":
             cols = [[
-                { field: 'vipcode', title: '会员号', sort: true, }
+                , { field: 'fid', title: '主键', sort: true, hide: true}
                 , { field: 'name', title: '姓名' }
                 , { field: 'phone', title: '电话', sort: true }
 
