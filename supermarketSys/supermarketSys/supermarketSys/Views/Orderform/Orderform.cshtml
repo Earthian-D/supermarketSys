@@ -227,14 +227,17 @@
                             if (orderdetail.orderno == "") alert("第"+(i+1)+"明细数据有误，请仔细检查")
                             else {
                                 fnInsertData("OrderformDetail", orderdetail)
+                                var time = new Date();
+                                var date = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
                                 var data = {
                                     "fid": null,
                                     "factorycode": orderdetail.factorycode,
                                     "num": orderdetail.num,
-                                    "state": "进货"
-                                    
+                                    "state": "进货",
+                                    "cost": orderdetail.sumprice,
+                                    "treatmentdate": date
                                 }
-                                console.log(data)
+                                console.log(JSON.stringify(data))
                                 fnInsertData("Inventorydetail", data)
                             }
                             

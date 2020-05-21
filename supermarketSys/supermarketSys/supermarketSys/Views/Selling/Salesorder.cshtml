@@ -380,11 +380,15 @@
                                 }
                                 if (ch.indexOf(0) == -1) {
                                     fnInsertData("SalesformDetail", salesdetail);
+                                    var time = new Date();
+                                    var date = time.getFullYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
                                     var data = {
                                         "fid":null,
                                         "factorycode": salesdetail.factorycode,
                                         "num": salesdetail.num,
-                                        "state": "销售"
+                                        "state": "销售",
+                                        "cost": salesdetail.sumprice,
+                                        "treatmentdate": date
                                     }
                                     fnInsertData("Inventorydetail", data)
                                     if (typeof salesdetail.sumprice === 'number' && isNaN(salesdetail.sumprice) != true) {
