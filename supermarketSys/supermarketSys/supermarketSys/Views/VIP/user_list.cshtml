@@ -25,10 +25,10 @@
 
                     <div class=" clearfix cl">
 
-                        <div class="Add_p_s"  style="display:none">
+                        <div class="Add_p_s"  >
                             <label class="form-label col-2">会员号：</label>
                             <div class="formControls col-2">
-                                <input type="text" class="input-text" value="" placeholder="" id="vipcode" name="" readonly>
+                                <input type="text" class="input-text" value="" placeholder="" id="vipcode" name="" >
                             </div>
                         </div>
                         <div class="Add_p_s">
@@ -72,13 +72,13 @@
     </div>
     <script type="text/javascript">
         function article_save_submit() {
-            var data = fnGetDataArryObj("Viptable", "1=1");
-            if (data != "]") {
-                data = JSON.parse(data);
-                $("#vipcode").val(data.length + 1);
+            if ($("#vipcode").val() == "") {
+                alert("会员号不能为空");
+                return;
             }
-            else {
-                $("#vipcode").val("1");
+            if ($("#vipcode").val() != "") {
+                var data = fnGetDataArryObj("Viptable", "fid='" + $("#vipcode").val() + "'");
+                if (data != "]") alert("改会员号已存在！")
             }
             if ($("#name").val() == "") {
                 alert("姓名不能为空");
@@ -89,7 +89,7 @@
                 return;
             }
             var data = {
-                "fid": NewGuid(),
+                "fid": $("#vipcode").val(),
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "integral": $("#integral").val()
